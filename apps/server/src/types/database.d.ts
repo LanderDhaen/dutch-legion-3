@@ -25,7 +25,7 @@ interface Clan {
 
 interface Season {
   id: number
-  startTime: Date
+  date: Date | string
 }
 
 interface Participation {

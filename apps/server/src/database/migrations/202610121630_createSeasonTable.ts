@@ -14,7 +14,7 @@ export const up = async (db: Kysely<any>) => {
       c.notNull().defaultTo("now()")
     )
     .addColumn("isActive", "boolean", (c) => c.notNull().defaultTo(true))
-    .addColumn("startTime", "timestamptz", (c) => c.notNull())
+    .addColumn("date", "date", (c) => c.notNull().unique())
 
     .execute()
 }
