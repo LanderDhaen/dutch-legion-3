@@ -1,4 +1,4 @@
-import { jsonArrayFrom } from "kysely/helpers/postgres"
+import { jsonArrayFrom, jsonObjectFrom } from "kysely/helpers/postgres"
 import { db } from "./../database"
 import { Elysia, t } from "elysia"
 
@@ -14,15 +14,34 @@ export const seasonRouter = new Elysia({
         jsonArrayFrom(
           eb
             .selectFrom("participation")
-            .leftJoin("modifier", "participation.modifierId", "modifier.id")
             .innerJoin("league", "participation.leagueId", "league.id")
             .innerJoin("clan", "participation.clanTag", "clan.tag")
             .select((eb) => [
               "clan.name as name",
               "clan.tag as tag",
               "league.name as league",
-              "modifier.name as modifier",
-
+              jsonObjectFrom(
+                eb
+                  .selectFrom("modifier")
+                  .innerJoin("version", "version.modifierId", "modifier.id")
+                  .select([
+                    "modifier.name",
+                    "version.additionalDefendingBuildingDPS",
+                    "version.additionalDefendingBuildingHealth",
+                    "version.additionalDefendingHeroesDPS",
+                    "version.additionalDefendingHeroesHealth",
+                    "version.additionalDefendingGuardiansDPS",
+                    "version.additionalDefendingGuardiansHealth",
+                    "version.reducedAttackingHeroesDPS",
+                    "version.reducedAttackingHeroesHealth",
+                    "version.reducedCommonEquipmentLevel",
+                    "version.reducedEpicEquipmentLevel",
+                  ])
+                  .whereRef("modifier.id", "=", "participation.modifierId")
+                  .whereRef("version.effectiveFrom", "<=", "season.date")
+                  .orderBy("version.effectiveFrom", "desc")
+                  .limit(1)
+              ).as("modifier"),
               jsonArrayFrom(
                 eb
                   .selectFrom("statistic")

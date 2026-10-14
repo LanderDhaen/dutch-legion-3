@@ -1,5 +1,6 @@
 export interface Database {
   modifier: Modifier
+  version: Version
   league: League
   clan: Clan
   season: Season
@@ -11,6 +12,22 @@ export interface Database {
 interface Modifier {
   id: number
   name: string
+}
+
+interface Version {
+  id: number
+  effectiveFrom: Date | string
+  additionalDefendingBuildingDPS: number
+  additionalDefendingBuildingHealth: number
+  additionalDefendingHeroesDPS: number
+  additionalDefendingHeroesHealth: number
+  additionalDefendingGuardiansDPS: number
+  additionalDefendingGuardiansHealth: number
+  reducedAttackingHeroesDPS: number
+  reducedAttackingHeroesHealth: number
+  reducedCommonEquipmentLevel: number
+  reducedEpicEquipmentLevel: number
+  modifierId: number
 }
 
 interface League {
