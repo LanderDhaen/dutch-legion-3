@@ -17,6 +17,8 @@
     "strict": true,
     "target": "ES2022",
     "paths": {
+      "@bot/*": ["../../apps/bot/src/*"],
+      "@bot": ["../../apps/bot/src"],
       "@server/*": ["../../apps/server/src/*"],
       "@server": ["../../apps/server/src"],
       "@web/*": ["../../apps/web/*"],

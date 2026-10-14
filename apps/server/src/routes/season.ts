@@ -1,6 +1,7 @@
 import { jsonArrayFrom, jsonObjectFrom } from "kysely/helpers/postgres"
 import { db } from "./../database"
 import { Elysia, t } from "elysia"
+import { $ } from "bun"
 
 export const seasonRouter = new Elysia({
   prefix: "/season",
@@ -41,7 +42,9 @@ export const seasonRouter = new Elysia({
                   .whereRef("version.effectiveFrom", "<=", "season.date")
                   .orderBy("version.effectiveFrom", "desc")
                   .limit(1)
-              ).as("modifier"),
+              )
+                .$notNull()
+                .as("modifier"),
               jsonArrayFrom(
                 eb
                   .selectFrom("statistic")
