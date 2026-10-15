@@ -1,90 +1,88 @@
 import { jsonArrayFrom, jsonObjectFrom } from "kysely/helpers/postgres"
 import { db } from "./../database"
 import { Elysia, t } from "elysia"
-import { $ } from "bun"
+import { normalizeTag } from "../lib/util"
 
 export const seasonRouter = new Elysia({
   prefix: "/season",
 }).get(
-  "/:date",
-  async ({ params: { date }, status }) => {
+  "/:date/clan/:tag",
+  async ({ params: { date, tag }, status }) => {
+    const normalizedTag = normalizeTag(tag)
+
     const season = await db
-      .selectFrom("season")
+      .selectFrom("participation")
+      .innerJoin("season", "season.id", "participation.seasonId")
+      .innerJoin("clan", "clan.tag", "participation.clanTag")
+      .innerJoin("league", "league.id", "participation.leagueId")
       .select((eb) => [
         "season.date",
+        "league.name as league",
+        jsonObjectFrom(
+          eb
+            .selectFrom("clan")
+            .innerJoin("participation", "participation.clanTag", "clan.tag")
+            .select(["clan.name", "clan.tag"])
+            .whereRef("clan.tag", "=", "participation.clanTag")
+        )
+          .$notNull()
+          .as("clan"),
+        jsonObjectFrom(
+          eb
+            .selectFrom("version")
+            .innerJoin("modifier", "modifier.id", "version.modifierId")
+            .select([
+              "modifier.name",
+              "version.additionalDefendingBuildingDPS",
+              "version.additionalDefendingBuildingHealth",
+              "version.additionalDefendingHeroesDPS",
+              "version.additionalDefendingHeroesHealth",
+              "version.additionalDefendingGuardiansDPS",
+              "version.additionalDefendingGuardiansHealth",
+              "version.reducedAttackingHeroesDPS",
+              "version.reducedAttackingHeroesHealth",
+              "version.reducedCommonEquipmentLevel",
+              "version.reducedEpicEquipmentLevel",
+            ])
+            .whereRef("version.modifierId", "=", "participation.modifierId")
+            .whereRef("version.effectiveFrom", "<=", "season.date")
+            .orderBy("version.effectiveFrom", "desc")
+            .limit(1)
+        )
+          .$notNull()
+          .as("modifier"),
         jsonArrayFrom(
           eb
-            .selectFrom("participation")
-            .innerJoin("league", "participation.leagueId", "league.id")
-            .innerJoin("clan", "participation.clanTag", "clan.tag")
+            .selectFrom("statistic")
+            .innerJoin("player", "player.tag", "statistic.playerTag")
             .select((eb) => [
-              "clan.name as name",
-              "clan.tag as tag",
-              "league.name as league",
-              jsonObjectFrom(
-                eb
-                  .selectFrom("modifier")
-                  .innerJoin("version", "version.modifierId", "modifier.id")
-                  .select([
-                    "modifier.name",
-                    "version.additionalDefendingBuildingDPS",
-                    "version.additionalDefendingBuildingHealth",
-                    "version.additionalDefendingHeroesDPS",
-                    "version.additionalDefendingHeroesHealth",
-                    "version.additionalDefendingGuardiansDPS",
-                    "version.additionalDefendingGuardiansHealth",
-                    "version.reducedAttackingHeroesDPS",
-                    "version.reducedAttackingHeroesHealth",
-                    "version.reducedCommonEquipmentLevel",
-                    "version.reducedEpicEquipmentLevel",
-                  ])
-                  .whereRef("modifier.id", "=", "participation.modifierId")
-                  .whereRef("version.effectiveFrom", "<=", "season.date")
-                  .orderBy("version.effectiveFrom", "desc")
-                  .limit(1)
-              )
-                .$notNull()
-                .as("modifier"),
-              jsonArrayFrom(
-                eb
-                  .selectFrom("statistic")
-                  .innerJoin("player", "statistic.playerTag", "player.tag")
-                  .select((eb) => [
-                    "player.name",
-                    "player.tag",
-                    "statistic.townhall",
-                    "statistic.wars",
-                    "statistic.stars",
-                    "statistic.destruction",
-                    eb(
-                      eb.cast<number>("statistic.stars", "numeric"),
-                      "/",
-                      eb.cast<number>("statistic.wars", "numeric")
-                    ).as("average"),
-                    eb(
-                      eb.ref("statistic.wars"),
-                      "-",
-                      eb.ref("statistic.attacks")
-                    ).as("missed"),
-                  ])
-                  .whereRef(
-                    "statistic.participationId",
-                    "=",
-                    "participation.id"
-                  )
-                  .orderBy("average", "desc")
-              ).as("statistics"),
+              "player.name",
+              "player.tag",
+              "statistic.townhall",
+              "statistic.wars",
+              "statistic.stars",
+              "statistic.destruction",
+              eb(
+                eb.cast<number>("statistic.stars", "double precision"),
+                "/",
+                eb.cast<number>("statistic.wars", "double precision")
+              ).as("average"),
+              eb(eb.ref("statistic.wars"), "-", eb.ref("statistic.attacks")).as(
+                "missed"
+              ),
             ])
-            .whereRef("participation.seasonId", "=", "season.id")
-        ).as("clans"),
+            .whereRef("statistic.participationId", "=", "participation.id")
+            .orderBy("average", "desc")
+        ).as("statistics"),
       ])
       .where("season.date", "=", date)
+      .where("participation.clanTag", "=", normalizedTag)
       .executeTakeFirst()
 
     if (!season) {
       return status(404, {
         code: "NOT_FOUND",
-        message: `There's not season with date ${date}.`,
+        message: `There's no data for ${normalizedTag} in season ${date}.`,
       })
     }
 
@@ -96,6 +94,10 @@ export const seasonRouter = new Elysia({
         format: "date",
         pattern: "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$",
         error: "Date must be in the YYYY-MM-DD format.",
+      }),
+      tag: t.String({
+        pattern: "^#?[0289PYLQGRJCUVpylqgrjcuv]{3,10}$",
+        error: "Tag must be a valid clan tag.",
       }),
     }),
   }
