@@ -18,57 +18,68 @@ export const performance = {
 
   async execute(interaction: ChatInputCommandInteraction) {
     const date = interaction.options.getString("season", true)
+    const tag = interaction.options.getString("clan", true)
 
-    const { data: season, error } = await api.season({ date }).get()
+    const { data: season, error } = await api
+      .season({ date: date })
+      .clan({ tag: normalizeTag(tag) })
+      .get()
 
     if (error) {
       return console.error(error)
     }
 
+    const table = [
+      "```text",
+      ["Stars".padStart(5), "Average".padStart(7), "Name"].join(" | "),
+      ...season.statistics.map((stat) =>
+        [
+          String(stat.stars).padStart(5),
+          stat.average.toFixed(2).padStart(7),
+          stat.name,
+        ].join(" | ")
+      ),
+      "```",
+    ].join("\n")
+
     const embed = new EmbedBuilder()
       .setColor("Green")
-      .setTitle("CWL Performance")
-      .setDescription(
-        `The following statistics were collected for ${season.date.toLocaleString(
-          "en-US",
-          {
-            month: "short",
-            year: "numeric",
-            timeZone: "UTC",
-          }
-        )}`
+      .setTitle(
+        `CWL Performance  •  ${season.date.toLocaleString("en-US", {
+          month: "short",
+          year: "numeric",
+          timeZone: "UTC",
+        })}`
       )
-
-    for (const clan of season.clans) {
-      const table = [
-        "```text",
-        [
-          "Wars".padStart(5),
-          "Stars".padStart(5),
-          "Average".padStart(7),
-          "Name",
-        ].join(" | "),
-        ...clan.statistics.map((stat) =>
-          [
-            String(stat.wars).padStart(5),
-            String(stat.stars).padStart(5),
-            stat.average.toFixed(2).padStart(7),
-            `${stat.name} (TH${stat.townhall})`,
-          ].join("   ")
-        ),
-        "```",
-      ].join("\n")
-
-      console.log(table.length)
-
-      embed.addFields({
-        name: `${clan.name}  •  ${clan.league}${clan.modifier.name !== "None" && `  •  ${clan.modifier.name}`}`,
-        value: table,
-      })
-    }
+      .addFields(
+        {
+          name: "Clan",
+          value: season.clan.name,
+          inline: true,
+        },
+        {
+          name: "League",
+          value: season.league,
+          inline: true,
+        },
+        {
+          name: "Modifier",
+          value:
+            season.modifier.name === "None" ? "*None*" : season.modifier.name,
+          inline: true,
+        },
+        {
+          name: "Performance",
+          value: table,
+        }
+      )
 
     await interaction.reply({
       embeds: [embed],
     })
   },
+}
+
+const normalizeTag = (tag: string) => {
+  return tag.toUpperCase().replaceAll("#", "%23")
 }
