@@ -1,4 +1,5 @@
 import {
+  type AutocompleteInteraction,
   type ChatInputCommandInteraction,
   Client,
   Collection,
@@ -15,6 +16,7 @@ interface Command {
     | SlashCommandBuilder
     | SlashCommandOptionsOnlyBuilder
     | SlashCommandSubcommandsOnlyBuilder
+  autocomplete?: (interaction: AutocompleteInteraction) => Promise<void>
   execute: (interaction: ChatInputCommandInteraction) => Promise<void>
 }
 
@@ -33,20 +35,32 @@ client.once(Events.ClientReady, (readyClient) => {
 client.commands.set(cwl.data.name, cwl)
 
 client.on(Events.InteractionCreate, async (interaction) => {
-  if (!interaction.isChatInputCommand()) return
+  if (interaction.isChatInputCommand()) {
+    const command = client.commands.get(interaction.commandName)
 
-  const command = client.commands.get(interaction.commandName)
+    if (!command) return
 
-  if (!command) return
+    try {
+      await command.execute(interaction)
+    } catch (error) {
+      console.error(error)
+      await interaction.reply({
+        content: "There was an error while executing this command!",
+        ephemeral: true,
+      })
+    }
+  }
 
-  try {
-    await command.execute(interaction)
-  } catch (error) {
-    console.error(error)
-    await interaction.reply({
-      content: "There was an error while executing this command!",
-      ephemeral: true,
-    })
+  if (interaction.isAutocomplete()) {
+    const command = client.commands.get(interaction.commandName)
+
+    if (!command || !command.autocomplete) return
+
+    try {
+      await command.autocomplete(interaction)
+    } catch (error) {
+      console.error(error)
+    }
   }
 })
 

@@ -1,4 +1,5 @@
 import {
+  type AutocompleteInteraction,
   type ChatInputCommandInteraction,
   EmbedBuilder,
   SlashCommandSubcommandBuilder,
@@ -14,15 +15,65 @@ export const performance = {
         .setName("season")
         .setDescription("The season to display the performance for")
         .setRequired(true)
+        .setAutocomplete(true)
+    )
+    .addStringOption((option) =>
+      option
+        .setName("clan")
+        .setDescription("The clan to display the performance for")
+        .setRequired(true)
+        .setAutocomplete(true)
     ),
+
+  async autocomplete(interaction: AutocompleteInteraction) {
+    const focusedOption = interaction.options.getFocused(true)
+
+    if (focusedOption.name === "season") {
+      const { data: seasons, error } = await api.seasons.get()
+
+      if (error) {
+        return console.error(error)
+      }
+
+      const choices = seasons.map((season) => ({
+        name: formatDate(season.date),
+        value: season.date,
+      }))
+
+      await interaction.respond(
+        choices.filter((choice) =>
+          choice.name.toLowerCase().includes(focusedOption.value)
+        )
+      )
+    }
+
+    if (focusedOption.name === "clan") {
+      const { data: clans, error } = await api.clans.get()
+
+      if (error) {
+        return console.error(error)
+      }
+
+      const choices = clans.map((clan) => ({
+        name: clan.name,
+        value: clan.tag,
+      }))
+
+      await interaction.respond(
+        choices.filter((choice) =>
+          choice.name.toLowerCase().includes(focusedOption.value.toLowerCase())
+        )
+      )
+    }
+  },
 
   async execute(interaction: ChatInputCommandInteraction) {
     const date = interaction.options.getString("season", true)
     const tag = interaction.options.getString("clan", true)
 
     const { data: season, error } = await api
-      .season({ date: date })
-      .clan({ tag: normalizeTag(tag) })
+      .seasons({ date: date })
+      .clans({ tag: normalizeTag(tag) })
       .get()
 
     if (error) {
@@ -44,13 +95,7 @@ export const performance = {
 
     const embed = new EmbedBuilder()
       .setColor("Green")
-      .setTitle(
-        `CWL Performance  •  ${season.date.toLocaleString("en-US", {
-          month: "short",
-          year: "numeric",
-          timeZone: "UTC",
-        })}`
-      )
+      .setTitle(`CWL Performance  •  ${formatDate(season.date)}`)
       .addFields(
         {
           name: "Clan",
@@ -82,4 +127,11 @@ export const performance = {
 
 const normalizeTag = (tag: string) => {
   return tag.toUpperCase().replaceAll("#", "%23")
+}
+
+const formatDate = (date: string) => {
+  return new Date(date).toLocaleString("en-US", {
+    month: "short",
+    year: "numeric",
+  })
 }
