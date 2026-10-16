@@ -1,5 +1,5 @@
 {
-  "name": "maspoe-events",
+  "name": "dutch-legion-3",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -12,10 +12,11 @@
   "devDependencies": {
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
+    "eslint": "^9.39.5",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "turbo": "^2.9.18",
-    "typescript": "^5"
+    "typescript": "^6"
   },
   "packageManager": "pnpm@10.33.4",
   "engines": {

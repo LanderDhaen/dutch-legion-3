@@ -1,9 +1,12 @@
 {
   "name": "server",
-  "version": "1.0.50",
+  "version": "0.0.1",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts"
+    "dev": "bun run --watch src/index.ts",
+    "lint": "eslint",
+    "format": "prettier --write \"**/*.{ts,tsx}\"",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "elysia": "1.4.30",
@@ -14,6 +17,8 @@
   },
   "devDependencies": {
     "@types/pg": "^8.23.1",
+    "@workspace/eslint-config": "workspace:*",
+    "@workspace/typescript-config": "workspace:*",
     "bun-types": "latest"
   },
   "module": "src/index.js"
