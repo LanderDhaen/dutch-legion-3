@@ -43,16 +43,15 @@ export const seasonRouter = new Elysia({
               .innerJoin("modifier", "modifier.id", "version.modifierId")
               .select([
                 "modifier.name",
-                "version.additionalDefendingBuildingDPS",
-                "version.additionalDefendingBuildingHealth",
-                "version.additionalDefendingHeroesDPS",
+                "version.additionalDefendingBuildingDps",
+                "version.additionalDefendingHeroesDps",
                 "version.additionalDefendingHeroesHealth",
-                "version.additionalDefendingGuardiansDPS",
+                "version.additionalDefendingGuardiansDps",
                 "version.additionalDefendingGuardiansHealth",
-                "version.reducedAttackingHeroesDPS",
+                "version.reducedAttackingHeroesDps",
                 "version.reducedAttackingHeroesHealth",
-                "version.reducedCommonEquipmentLevel",
-                "version.reducedEpicEquipmentLevel",
+                "version.commonEquipmentCap",
+                "version.epicEquipmentLevel",
               ])
               .whereRef("version.modifierId", "=", "participation.modifierId")
               .whereRef("version.effectiveFrom", "<=", "season.date")

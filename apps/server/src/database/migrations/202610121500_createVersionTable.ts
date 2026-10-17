@@ -16,9 +16,6 @@ export const up = async (db: Kysely<any>) => {
     .addColumn("isActive", "boolean", (c) => c.notNull().defaultTo(true))
     .addColumn("effectiveFrom", "date", (c) => c.notNull())
     .addColumn("additionalDefendingBuildingDPS", "smallint", (c) => c.notNull())
-    .addColumn("additionalDefendingBuildingHealth", "smallint", (c) =>
-      c.notNull()
-    )
     .addColumn("additionalDefendingHeroesDPS", "smallint", (c) => c.notNull())
     .addColumn("additionalDefendingHeroesHealth", "smallint", (c) =>
       c.notNull()
@@ -31,8 +28,8 @@ export const up = async (db: Kysely<any>) => {
     )
     .addColumn("reducedAttackingHeroesDPS", "smallint", (c) => c.notNull())
     .addColumn("reducedAttackingHeroesHealth", "smallint", (c) => c.notNull())
-    .addColumn("reducedCommonEquipmentLevel", "smallint", (c) => c.notNull())
-    .addColumn("reducedEpicEquipmentLevel", "smallint", (c) => c.notNull())
+    .addColumn("commonEquipmentCap", "smallint", (c) => c.notNull())
+    .addColumn("epicEquipmentLevel", "smallint", (c) => c.notNull())
 
     // FK
 

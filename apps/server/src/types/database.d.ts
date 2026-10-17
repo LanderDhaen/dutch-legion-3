@@ -17,16 +17,15 @@ interface Modifier {
 interface Version {
   id: number
   effectiveFrom: Date | string
-  additionalDefendingBuildingDPS: number
-  additionalDefendingBuildingHealth: number
-  additionalDefendingHeroesDPS: number
+  additionalDefendingBuildingDps: number
+  additionalDefendingHeroesDps: number
   additionalDefendingHeroesHealth: number
-  additionalDefendingGuardiansDPS: number
+  additionalDefendingGuardiansDps: number
   additionalDefendingGuardiansHealth: number
-  reducedAttackingHeroesDPS: number
+  reducedAttackingHeroesDps: number
   reducedAttackingHeroesHealth: number
-  reducedCommonEquipmentLevel: number
-  reducedEpicEquipmentLevel: number
+  commonEquipmentCap: number
+  epicEquipmentLevel: number
   modifierId: number
 }
 

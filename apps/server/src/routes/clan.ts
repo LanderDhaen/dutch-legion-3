@@ -1,5 +1,5 @@
 import { db } from "./../database"
-import { Elysia, t } from "elysia"
+import { Elysia } from "elysia"
 
 export const clanRouter = new Elysia({
   prefix: "/clans",
