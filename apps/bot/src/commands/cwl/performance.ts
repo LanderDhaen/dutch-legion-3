@@ -1,10 +1,15 @@
 import {
+  ActionRowBuilder,
   type AutocompleteInteraction,
+  ButtonBuilder,
+  ButtonStyle,
   type ChatInputCommandInteraction,
   EmbedBuilder,
   SlashCommandSubcommandBuilder,
 } from "discord.js"
 import { api } from "../../api"
+
+const WEBSITE_URL = process.env.WEBSITE_URL || "http://localhost:3000"
 
 export const performance = {
   data: new SlashCommandSubcommandBuilder()
@@ -119,8 +124,18 @@ export const performance = {
         }
       )
 
+    const url = `${WEBSITE_URL}/seasons/${season.date}/clans/${normalizeTag(tag)}`
+
+    const button = new ButtonBuilder()
+      .setLabel("Website")
+      .setStyle(ButtonStyle.Link)
+      .setURL(url)
+
+    const row = new ActionRowBuilder<ButtonBuilder>().addComponents(button)
+
     await interaction.reply({
       embeds: [embed],
+      components: [row],
     })
   },
 }
