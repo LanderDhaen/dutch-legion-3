@@ -18,7 +18,7 @@ export const up = async (db: Kysely<any>) => {
     // FK
 
     .addColumn("modifierId", "integer", (c) =>
-      c.notNull().references("modifier.id").onDelete("restrict")
+      c.defaultTo(null).references("modifier.id").onDelete("restrict")
     )
     .addColumn("leagueId", "integer", (c) =>
       c.notNull().references("league.id").onDelete("restrict")

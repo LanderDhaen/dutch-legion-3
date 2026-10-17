@@ -109,13 +109,12 @@ export const performance = {
         },
         {
           name: "League",
-          value: season.league,
+          value: season.league.name,
           inline: true,
         },
         {
           name: "Modifier",
-          value:
-            season.modifier.name === "None" ? "*None*" : season.modifier.name,
+          value: season.league.modifier?.name ?? "*None*",
           inline: true,
         },
         {

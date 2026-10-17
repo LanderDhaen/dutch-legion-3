@@ -25,7 +25,7 @@ interface Version {
   reducedAttackingHeroesDps: number
   reducedAttackingHeroesHealth: number
   commonEquipmentCap: number
-  epicEquipmentLevel: number
+  epicEquipmentCap: number
   modifierId: number
 }
 
@@ -48,7 +48,7 @@ interface Participation {
   id: number
   clanTag: string
   leagueId: number
-  modifierId: number
+  modifierId: number | null
   seasonId: number
 }
 

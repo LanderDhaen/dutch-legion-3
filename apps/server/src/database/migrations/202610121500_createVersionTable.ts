@@ -29,7 +29,7 @@ export const up = async (db: Kysely<any>) => {
     .addColumn("reducedAttackingHeroesDPS", "smallint", (c) => c.notNull())
     .addColumn("reducedAttackingHeroesHealth", "smallint", (c) => c.notNull())
     .addColumn("commonEquipmentCap", "smallint", (c) => c.notNull())
-    .addColumn("epicEquipmentLevel", "smallint", (c) => c.notNull())
+    .addColumn("epicEquipmentCap", "smallint", (c) => c.notNull())
 
     // FK
 

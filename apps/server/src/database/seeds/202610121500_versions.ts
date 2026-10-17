@@ -15,8 +15,8 @@ export const seed = async (db: Kysely<any>) => {
         reducedAttackingHeroesDPS: -5,
         reducedAttackingHeroesHealth: -5,
         commonEquipmentCap: 18,
-        epicEquipmentLevel: 27,
-        modifierId: 2,
+        epicEquipmentCap: 27,
+        modifierId: 1,
       },
       {
         effectiveFrom: "2026-04-27",
@@ -28,8 +28,8 @@ export const seed = async (db: Kysely<any>) => {
         reducedAttackingHeroesDPS: -10,
         reducedAttackingHeroesHealth: -10,
         commonEquipmentCap: 18,
-        epicEquipmentLevel: 27,
-        modifierId: 3,
+        epicEquipmentCap: 27,
+        modifierId: 2,
       },
       {
         effectiveFrom: "2026-04-27",
@@ -41,8 +41,8 @@ export const seed = async (db: Kysely<any>) => {
         reducedAttackingHeroesDPS: -20,
         reducedAttackingHeroesHealth: -20,
         commonEquipmentCap: 18,
-        epicEquipmentLevel: 27,
-        modifierId: 4,
+        epicEquipmentCap: 27,
+        modifierId: 3,
       },
       {
         effectiveFrom: "2026-04-27",
@@ -54,8 +54,8 @@ export const seed = async (db: Kysely<any>) => {
         reducedAttackingHeroesDPS: -20,
         reducedAttackingHeroesHealth: -20,
         commonEquipmentCap: 15,
-        epicEquipmentLevel: 21,
-        modifierId: 5,
+        epicEquipmentCap: 21,
+        modifierId: 4,
       },
     ])
     .execute()

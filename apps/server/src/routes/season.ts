@@ -1,4 +1,8 @@
-import { jsonArrayFrom, jsonObjectFrom } from "kysely/helpers/postgres"
+import {
+  jsonArrayFrom,
+  jsonBuildObject,
+  jsonObjectFrom,
+} from "kysely/helpers/postgres"
 import { db } from "./../database"
 import { Elysia, t } from "elysia"
 import { normalizeTag } from "../lib/util"
@@ -25,41 +29,41 @@ export const seasonRouter = new Elysia({
         .innerJoin("season", "season.id", "participation.seasonId")
         .innerJoin("clan", "clan.tag", "participation.clanTag")
         .innerJoin("league", "league.id", "participation.leagueId")
+
         .select((eb) => [
           "season.date",
-          "league.name as league",
-          jsonObjectFrom(
-            eb
-              .selectFrom("clan")
-              .innerJoin("participation", "participation.clanTag", "clan.tag")
-              .select(["clan.name", "clan.tag"])
-              .whereRef("clan.tag", "=", "participation.clanTag")
-          )
-            .$notNull()
-            .as("clan"),
-          jsonObjectFrom(
-            eb
-              .selectFrom("version")
-              .innerJoin("modifier", "modifier.id", "version.modifierId")
-              .select([
-                "modifier.name",
-                "version.additionalDefendingBuildingDps",
-                "version.additionalDefendingHeroesDps",
-                "version.additionalDefendingHeroesHealth",
-                "version.additionalDefendingGuardiansDps",
-                "version.additionalDefendingGuardiansHealth",
-                "version.reducedAttackingHeroesDps",
-                "version.reducedAttackingHeroesHealth",
-                "version.commonEquipmentCap",
-                "version.epicEquipmentLevel",
-              ])
-              .whereRef("version.modifierId", "=", "participation.modifierId")
-              .whereRef("version.effectiveFrom", "<=", "season.date")
-              .orderBy("version.effectiveFrom", "desc")
-              .limit(1)
-          )
-            .$notNull()
-            .as("modifier"),
+
+          jsonBuildObject({
+            name: eb.ref("clan.name"),
+            tag: eb.ref("clan.tag"),
+          }).as("clan"),
+
+          jsonBuildObject({
+            name: eb.ref("league.name"),
+
+            modifier: jsonObjectFrom(
+              eb
+                .selectFrom("version")
+                .innerJoin("modifier", "modifier.id", "version.modifierId")
+                .select([
+                  "modifier.name",
+                  "version.additionalDefendingBuildingDps",
+                  "version.additionalDefendingHeroesDps",
+                  "version.additionalDefendingHeroesHealth",
+                  "version.additionalDefendingGuardiansDps",
+                  "version.additionalDefendingGuardiansHealth",
+                  "version.reducedAttackingHeroesDps",
+                  "version.reducedAttackingHeroesHealth",
+                  "version.commonEquipmentCap",
+                  "version.epicEquipmentCap",
+                ])
+                .whereRef("version.modifierId", "=", "participation.modifierId")
+                .whereRef("version.effectiveFrom", "<=", "season.date")
+                .orderBy("version.effectiveFrom", "desc")
+                .limit(1)
+            ),
+          }).as("league"),
+
           jsonArrayFrom(
             eb
               .selectFrom("statistic")
@@ -74,18 +78,20 @@ export const seasonRouter = new Elysia({
                 eb(
                   eb.cast<number>("statistic.stars", "double precision"),
                   "/",
-                  eb.cast<number>("statistic.wars", "double precision")
+                  eb.fn<number | null>("nullif", [
+                    eb.ref("statistic.wars"),
+                    eb.val(0),
+                  ])
                 ).as("average"),
-                eb(
-                  eb.ref("statistic.wars"),
-                  "-",
-                  eb.ref("statistic.attacks")
-                ).as("missed"),
+                eb("statistic.wars", "-", eb.ref("statistic.attacks")).as(
+                  "missed"
+                ),
               ])
               .whereRef("statistic.participationId", "=", "participation.id")
               .orderBy("average", "desc")
           ).as("statistics"),
         ])
+
         .where("season.date", "=", date)
         .where("participation.clanTag", "=", normalizedTag)
         .executeTakeFirst()

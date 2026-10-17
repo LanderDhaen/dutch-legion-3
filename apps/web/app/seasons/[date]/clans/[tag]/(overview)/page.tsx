@@ -17,6 +17,7 @@ import {
   CardTitle,
 } from "@workspace/ui/components/card"
 import AverageStarsBadge from "@web/components/average-stars-badge"
+import ModifierTable from "@web/components/modifier-table"
 import { formatSeasonDate } from "@web/lib/util"
 
 export default async function Page({
@@ -37,44 +38,6 @@ export default async function Page({
   if (error) {
     notFound()
   }
-
-  const modifier = season.modifier
-
-  const modifiers = [
-    {
-      name: "Def. Buildings",
-      dps: modifier.additionalDefendingBuildingDps,
-      hp: null,
-    },
-    {
-      name: "Def. Heroes",
-      dps: modifier.additionalDefendingHeroesDps,
-      hp: modifier.additionalDefendingHeroesHealth,
-    },
-    {
-      name: "Def. Guardians",
-      dps: modifier.additionalDefendingGuardiansDps,
-      hp: modifier.additionalDefendingGuardiansHealth,
-    },
-    {
-      name: "Att. Heroes",
-      dps: modifier.reducedAttackingHeroesDps,
-      hp: modifier.reducedAttackingHeroesHealth,
-    },
-  ]
-
-  const equipmentModifiers = [
-    {
-      name: "Common",
-      level: modifier.commonEquipmentCap,
-    },
-    {
-      name: "Epic",
-      level: modifier.epicEquipmentLevel,
-    },
-  ]
-
-  const formatPercentage = (value: number) => `${value > 0 ? "+" : ""}${value}%`
 
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
@@ -149,7 +112,7 @@ export default async function Page({
             </Table>
           </div>
         </CardContent>
-      </Card>{" "}
+      </Card>
       <div>
         <Card className="shadow-md">
           <CardHeader>
@@ -158,67 +121,21 @@ export default async function Page({
               <span>Modifier</span>
             </CardDescription>
             <CardTitle className="flex items-center justify-between font-bold">
-              <span>{season.league}</span>
-              <span>{season.modifier.name}</span>
+              <span>{season.league.name}</span>
+              {season.league.modifier ? (
+                <span>{season.league.modifier.name}</span>
+              ) : (
+                <span className="text-muted-foreground italic">
+                  No Modifiers
+                </span>
+              )}
             </CardTitle>
           </CardHeader>
-          <CardContent className="grid grid-cols-1 gap-4">
-            <div className="overflow-hidden rounded-md border">
-              <Table>
-                <TableHeader className="bg-muted">
-                  <TableRow>
-                    <TableHead className="h-8 text-xs">Unit</TableHead>
-                    <TableHead className="h-8 text-right text-xs">
-                      DPS
-                    </TableHead>
-                    <TableHead className="h-8 text-right text-xs">HP</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {modifiers.map((item) => (
-                    <TableRow key={item.name}>
-                      <TableCell className="py-2 text-xs">
-                        {item.name}
-                      </TableCell>
-                      <TableCell className="py-2 text-right text-xs tabular-nums">
-                        {formatPercentage(item.dps)}
-                      </TableCell>
-                      <TableCell className="py-2 text-right text-xs tabular-nums">
-                        {item.hp ? formatPercentage(item.hp) : "-"}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-            <div className="overflow-hidden rounded-md border">
-              <Table>
-                <TableHeader className="bg-muted">
-                  <TableRow>
-                    <TableHead className="h-2 text-xs">Equipment</TableHead>
-                    <TableHead colSpan={2} className="h-8 text-right text-xs">
-                      Cap
-                    </TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {equipmentModifiers.map((item) => (
-                    <TableRow key={item.name}>
-                      <TableCell className="py-2 text-xs">
-                        {item.name}
-                      </TableCell>
-                      <TableCell
-                        colSpan={2}
-                        className="py-2 text-right text-xs tabular-nums"
-                      >
-                        {item.level}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-          </CardContent>
+          {season.league.modifier && (
+            <CardContent className="grid grid-cols-1 gap-4">
+              <ModifierTable modifier={season.league.modifier} />
+            </CardContent>
+          )}
         </Card>
       </div>
     </div>

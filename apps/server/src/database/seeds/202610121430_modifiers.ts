@@ -6,9 +6,6 @@ export const seed = async (db: Kysely<any>) => {
     .insertInto("modifier")
     .values([
       {
-        name: "None",
-      },
-      {
         name: "Legend League III",
       },
       {
