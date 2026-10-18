@@ -7,7 +7,9 @@ import {
   EmbedBuilder,
   SlashCommandSubcommandBuilder,
 } from "discord.js"
-import { api } from "../../api"
+import { getClans } from "../../api/clan"
+import { getSeason, getSeasonOptions } from "../../api/season"
+import { formatSeasonDate, normalizeTag } from "../../lib/util"
 
 const WEBSITE_URL = process.env.WEBSITE_URL || "http://localhost:3000"
 
@@ -34,16 +36,7 @@ export const performance = {
     const focusedOption = interaction.options.getFocused(true)
 
     if (focusedOption.name === "season") {
-      const { data: seasons, error } = await api.seasons.get()
-
-      if (error) {
-        return console.error(error)
-      }
-
-      const choices = seasons.map((season) => ({
-        name: formatDate(season.date),
-        value: season.date,
-      }))
+      const choices = await getSeasonOptions()
 
       await interaction.respond(
         choices.filter((choice) =>
@@ -53,16 +46,7 @@ export const performance = {
     }
 
     if (focusedOption.name === "clan") {
-      const { data: clans, error } = await api.clans.get()
-
-      if (error) {
-        return console.error(error)
-      }
-
-      const choices = clans.map((clan) => ({
-        name: clan.name,
-        value: clan.tag,
-      }))
+      const choices = await getClans()
 
       await interaction.respond(
         choices.filter((choice) =>
@@ -76,10 +60,7 @@ export const performance = {
     const date = interaction.options.getString("season", true)
     const tag = interaction.options.getString("clan", true)
 
-    const { data: season, error } = await api
-      .seasons({ date: date })
-      .clans({ tag: normalizeTag(tag) })
-      .get()
+    const { data: season, error } = await getSeason(date, normalizeTag(tag))
 
     if (error) {
       return console.error(error)
@@ -100,7 +81,7 @@ export const performance = {
 
     const embed = new EmbedBuilder()
       .setColor("Green")
-      .setTitle(`CWL Performance  •  ${formatDate(season.date)}`)
+      .setTitle(`CWL Performance  •  ${formatSeasonDate(season.date)}`)
       .addFields(
         {
           name: "Clan",
@@ -137,15 +118,4 @@ export const performance = {
       components: [row],
     })
   },
-}
-
-const normalizeTag = (tag: string) => {
-  return tag.toUpperCase().replaceAll("#", "%23")
-}
-
-const formatDate = (date: string) => {
-  return new Date(date).toLocaleString("en-US", {
-    month: "short",
-    year: "numeric",
-  })
 }
