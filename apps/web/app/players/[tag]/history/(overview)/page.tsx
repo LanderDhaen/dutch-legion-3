@@ -19,6 +19,7 @@ import {
 import AverageStarsBadge from "@web/components/average-stars-badge"
 import { formatSeasonDate } from "@web/lib/util"
 import StatisticsTable from "@web/components/statistics-table"
+import TownhallBadge from "@web/components/townhall-badge"
 
 export default async function Page({
   params,
@@ -89,9 +90,7 @@ export default async function Page({
                       )}
                     </TableCell>
                     <TableCell className="text-right">
-                      <Badge variant="secondary" className="tabular-nums">
-                        TH{season.townhall}
-                      </Badge>
+                      <TownhallBadge townhall={season.townhall} />
                     </TableCell>
                     <TableCell className="text-right tabular-nums">
                       {season.wars}

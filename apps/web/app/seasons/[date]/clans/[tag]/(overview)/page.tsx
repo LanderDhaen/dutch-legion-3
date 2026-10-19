@@ -19,6 +19,7 @@ import {
 import AverageStarsBadge from "@web/components/average-stars-badge"
 import ModifierTable from "@web/components/modifier-table"
 import { formatSeasonDate } from "@web/lib/util"
+import TownhallBadge from "@web/components/townhall-badge"
 
 export default async function Page({
   params,
@@ -83,9 +84,7 @@ export default async function Page({
                   <TableRow key={performance.tag}>
                     <TableCell>{performance.name}</TableCell>
                     <TableCell className="text-right">
-                      <Badge variant="secondary" className="tabular-nums">
-                        TH{performance.townhall}
-                      </Badge>
+                      <TownhallBadge townhall={performance.townhall} />
                     </TableCell>
                     <TableCell className="text-right tabular-nums">
                       {performance.statistics.wars}
