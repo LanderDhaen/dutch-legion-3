@@ -8,7 +8,6 @@ import {
   TableHeader,
   TableRow,
 } from "@workspace/ui/components/table"
-import { Badge } from "@workspace/ui/components/badge"
 import {
   Card,
   CardContent,
