@@ -69,11 +69,11 @@ export const performance = {
     const table = [
       "```text",
       ["Stars".padStart(5), "Avg.".padStart(4), "Name"].join(" | "),
-      ...season.statistics.map((stat) =>
+      ...season.performances.map((performance) =>
         [
-          String(stat.stars).padStart(5),
-          stat.average.toFixed(1).padStart(4),
-          stat.name,
+          String(performance.statistics.stars).padStart(5),
+          performance.statistics.average.toFixed(1).padStart(4),
+          performance.name,
         ].join(" | ")
       ),
       "```",

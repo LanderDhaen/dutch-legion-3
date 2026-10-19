@@ -79,28 +79,31 @@ export default async function Page({
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {season.statistics.map((statistic) => (
-                  <TableRow key={statistic.tag}>
-                    <TableCell>{statistic.name}</TableCell>
+                {season.performances.map((performance) => (
+                  <TableRow key={performance.tag}>
+                    <TableCell>{performance.name}</TableCell>
                     <TableCell className="text-right">
                       <Badge variant="secondary" className="tabular-nums">
-                        TH{statistic.townhall}
+                        TH{performance.townhall}
                       </Badge>
                     </TableCell>
                     <TableCell className="text-right tabular-nums">
-                      {statistic.wars}
+                      {performance.statistics.wars}
                     </TableCell>
                     <TableCell className="text-right tabular-nums">
-                      {statistic.stars}
+                      {performance.statistics.stars}
                     </TableCell>
                     <TableCell className="text-right tabular-nums">
-                      {statistic.destruction}
+                      {performance.statistics.destruction}
                     </TableCell>
                     <TableCell className="text-right tabular-nums">
-                      <AverageStarsBadge average={statistic.average} />
+                      <AverageStarsBadge
+                        average={performance.statistics.average}
+                      />
                     </TableCell>
                     <TableCell className="text-right tabular-nums">
-                      {statistic.missed > 0 && statistic.missed}
+                      {performance.statistics.missed > 0 &&
+                        performance.statistics.missed}
                     </TableCell>
                   </TableRow>
                 ))}

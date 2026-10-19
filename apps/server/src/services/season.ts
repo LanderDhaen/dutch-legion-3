@@ -57,23 +57,25 @@ export const getSeasonPerformance = async (date: string, tag: string) => {
         eb
           .selectFrom("calculatedStatistics")
           .innerJoin("player", "player.tag", "calculatedStatistics.playerTag")
-          .select([
+          .select((eb) => [
             "player.name",
             "player.tag",
             "calculatedStatistics.townhall",
-            "calculatedStatistics.wars",
-            "calculatedStatistics.stars",
-            "calculatedStatistics.destruction",
-            "calculatedStatistics.average",
-            "calculatedStatistics.missed",
+            jsonBuildObject({
+              wars: eb.ref("calculatedStatistics.wars"),
+              stars: eb.ref("calculatedStatistics.stars"),
+              destruction: eb.ref("calculatedStatistics.destruction"),
+              average: eb.ref("calculatedStatistics.average"),
+              missed: eb.ref("calculatedStatistics.missed"),
+            }).as("statistics"),
           ])
           .whereRef(
             "calculatedStatistics.participationId",
             "=",
             "participation.id"
           )
-          .orderBy("average", "desc")
-      ).as("statistics"),
+          .orderBy("calculatedStatistics.average", "desc")
+      ).as("performances"),
     ])
     .where("season.date", "=", date)
     .where("participation.clanTag", "=", tag)
