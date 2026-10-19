@@ -52,7 +52,7 @@ export const history = {
       throw new Error(error.value.message)
     }
 
-    const hasMoreThanTwelveSeasons = player.seasons.length > 12
+    const leftoverSeasons = player.statistics.participations - 12
 
     const embed = new EmbedBuilder()
       .setColor("Green")
@@ -64,7 +64,7 @@ export const history = {
         },
         {
           name: "Participations",
-          value: String(player.seasons.length),
+          value: player.statistics.participations.toString(),
         },
         {
           name: "Average",
@@ -87,8 +87,8 @@ export const history = {
                 ].join(" | ")
               ),
             "",
-            hasMoreThanTwelveSeasons
-              ? `+${player.seasons.length - 12} more ${player.seasons.length - 12 === 1 ? "season" : "seasons"}`
+            leftoverSeasons > 0
+              ? `+${leftoverSeasons} more ${leftoverSeasons === 1 ? "season" : "seasons"}`
               : "",
             "```",
           ].join("\n"),

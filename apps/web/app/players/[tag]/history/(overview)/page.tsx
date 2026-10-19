@@ -121,7 +121,7 @@ export default async function Page({
               <span>Average</span>
             </CardDescription>
             <CardTitle className="flex items-center justify-between font-bold tabular-nums">
-              {player.seasons.length}
+              {player.statistics.participations}
               <AverageStarsBadge average={player.statistics.average} />
             </CardTitle>
           </CardHeader>

@@ -33,6 +33,7 @@ export const getPlayerHistory = async (tag: string) => {
       "player.name",
       "player.tag",
       jsonBuildObject({
+        participations: eb.ref("calculatedOverallStatistics.participations"),
         wars: eb.ref("calculatedOverallStatistics.wars"),
         stars: eb.ref("calculatedOverallStatistics.stars"),
         destruction: eb.ref("calculatedOverallStatistics.destruction"),

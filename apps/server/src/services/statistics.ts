@@ -30,6 +30,7 @@ export const withOverallCalculatedStatistics = () => {
     .selectFrom("statistic")
     .select((eb) => [
       "statistic.playerTag",
+      eb.fn.count<number>("statistic.id").as("participations"),
       eb.fn.coalesce(eb.fn.sum<number>("statistic.wars"), eb.val(0)).as("wars"),
       eb.fn
         .coalesce(eb.fn.sum<number>("statistic.stars"), eb.val(0))

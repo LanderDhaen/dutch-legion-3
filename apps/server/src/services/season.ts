@@ -75,6 +75,9 @@ export const getSeasonPerformance = async (date: string, tag: string) => {
             "participation.id"
           )
           .orderBy("calculatedStatistics.average", "desc")
+          .orderBy("calculatedStatistics.wars", "desc")
+          .orderBy("calculatedStatistics.stars", "desc")
+          .orderBy("calculatedStatistics.destruction", "desc")
       ).as("performances"),
     ])
     .where("season.date", "=", date)
