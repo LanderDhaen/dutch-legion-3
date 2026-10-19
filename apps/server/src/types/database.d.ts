@@ -55,6 +55,7 @@ interface Participation {
 interface Player {
   tag: string
   name: string
+  discordId: string | null
 }
 
 interface Statistic {
