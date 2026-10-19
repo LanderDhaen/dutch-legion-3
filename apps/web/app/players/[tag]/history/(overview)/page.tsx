@@ -18,6 +18,7 @@ import {
 } from "@workspace/ui/components/card"
 import AverageStarsBadge from "@web/components/average-stars-badge"
 import { formatSeasonDate } from "@web/lib/util"
+import StatisticsTable from "@web/components/statistics-table"
 
 export default async function Page({
   params,
@@ -33,8 +34,6 @@ export default async function Page({
   if (error) {
     notFound()
   }
-
-  const hasParticipations = player.seasons.length > 0
 
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
@@ -79,51 +78,43 @@ export default async function Page({
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {hasParticipations ? (
-                  player.seasons.map((season, index) => (
-                    <TableRow key={index}>
-                      <TableCell>{formatSeasonDate(season.date)}</TableCell>
-                      <TableCell>{season.clan.name}</TableCell>
-                      <TableCell>{season.league.name}</TableCell>
-                      <TableCell>
-                        {season.league.modifier && (
-                          <span>{season.league.modifier.name}</span>
-                        )}
-                      </TableCell>
-                      <TableCell className="text-right">
-                        <Badge variant="secondary" className="tabular-nums">
-                          TH{season.townhall}
-                        </Badge>
-                      </TableCell>
-                      <TableCell className="text-right tabular-nums">
-                        {season.wars}
-                      </TableCell>
-                      <TableCell className="text-right tabular-nums">
-                        {season.stars}
-                      </TableCell>
-                      <TableCell className="text-right tabular-nums">
-                        {season.destruction}
-                      </TableCell>
-                      <TableCell className="text-right tabular-nums">
-                        <AverageStarsBadge average={season.average} />
-                      </TableCell>
-                      <TableCell className="text-right tabular-nums">
-                        {season.missed > 0 && season.missed}
-                      </TableCell>
-                    </TableRow>
-                  ))
-                ) : (
-                  <TableRow>
-                    <TableCell colSpan={10} className="text-center italic">
-                      This player has not participated in any CWL seasons.
+                {player.seasons.map((season, index) => (
+                  <TableRow key={index}>
+                    <TableCell>{formatSeasonDate(season.date)}</TableCell>
+                    <TableCell>{season.clan.name}</TableCell>
+                    <TableCell>{season.league.name}</TableCell>
+                    <TableCell>
+                      {season.league.modifier && (
+                        <span>{season.league.modifier.name}</span>
+                      )}
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <Badge variant="secondary" className="tabular-nums">
+                        TH{season.townhall}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-right tabular-nums">
+                      {season.wars}
+                    </TableCell>
+                    <TableCell className="text-right tabular-nums">
+                      {season.stars}
+                    </TableCell>
+                    <TableCell className="text-right tabular-nums">
+                      {season.destruction}
+                    </TableCell>
+                    <TableCell className="text-right tabular-nums">
+                      <AverageStarsBadge average={season.average} />
+                    </TableCell>
+                    <TableCell className="text-right tabular-nums">
+                      {season.missed > 0 && season.missed}
                     </TableCell>
                   </TableRow>
-                )}
+                ))}
               </TableBody>
             </Table>
           </div>
         </CardContent>
-      </Card>{" "}
+      </Card>
       <div>
         <Card className="shadow-md">
           <CardHeader>
@@ -131,60 +122,13 @@ export default async function Page({
               <span>Participations</span>
               <span>Average</span>
             </CardDescription>
-            <CardTitle className="flex items-center justify-between font-bold">
-              {hasParticipations ? (
-                <span className="tabular-nums">{player.seasons.length}</span>
-              ) : (
-                <span className="text-muted-foreground italic">None</span>
-              )}
-              {player.average ? (
-                <AverageStarsBadge average={player.average} />
-              ) : (
-                <span className="text-muted-foreground italic">No results</span>
-              )}
+            <CardTitle className="flex items-center justify-between font-bold tabular-nums">
+              {player.seasons.length}
+              <AverageStarsBadge average={player.statistics.average} />
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="overflow-hidden rounded-md border">
-              <Table>
-                <TableHeader className="bg-muted">
-                  <TableRow>
-                    <TableHead colSpan={3} className="h-8 text-xs">
-                      Statistics
-                    </TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  <TableRow>
-                    <TableCell className="py-2 text-xs">Wars</TableCell>
-                    <TableCell
-                      colSpan={2}
-                      className="py-2 text-right text-xs tabular-nums"
-                    >
-                      {player.wars ?? "-"}
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="py-2 text-xs">Stars</TableCell>
-                    <TableCell
-                      colSpan={2}
-                      className="py-2 text-right text-xs tabular-nums"
-                    >
-                      {player.stars ?? "-"}
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="py-2 text-xs">Destruction</TableCell>
-                    <TableCell
-                      colSpan={2}
-                      className="py-2 text-right text-xs tabular-nums"
-                    >
-                      {player.destruction ?? "-"}
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </div>
+            <StatisticsTable statistics={player.statistics} />
           </CardContent>
         </Card>
       </div>

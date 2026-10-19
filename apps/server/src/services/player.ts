@@ -4,7 +4,10 @@ import {
   jsonObjectFrom,
 } from "kysely/helpers/postgres"
 import { db } from "./../database"
-import { withCalculatedStatistics } from "./statistics"
+import {
+  withCalculatedStatistics,
+  withOverallCalculatedStatistics,
+} from "./statistics"
 
 export const getPlayers = async () => {
   const players = await db
@@ -19,10 +22,23 @@ export const getPlayers = async () => {
 export const getPlayerHistory = async (tag: string) => {
   const player = await db
     .with("calculatedStatistics", withCalculatedStatistics())
+    .with("calculatedOverallStatistics", withOverallCalculatedStatistics())
     .selectFrom("player")
+    .innerJoin(
+      "calculatedOverallStatistics",
+      "calculatedOverallStatistics.playerTag",
+      "player.tag"
+    )
     .select((eb) => [
       "player.name",
       "player.tag",
+      jsonBuildObject({
+        wars: eb.ref("calculatedOverallStatistics.wars"),
+        stars: eb.ref("calculatedOverallStatistics.stars"),
+        destruction: eb.ref("calculatedOverallStatistics.destruction"),
+        average: eb.ref("calculatedOverallStatistics.average"),
+        missed: eb.ref("calculatedOverallStatistics.missed"),
+      }).as("statistics"),
       jsonArrayFrom(
         eb
           .selectFrom("calculatedStatistics")

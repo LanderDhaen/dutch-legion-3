@@ -52,7 +52,6 @@ export const history = {
       throw new Error(error.value.message)
     }
 
-    const hasParticipations = player.seasons.length > 0
     const hasMoreThanTwelveSeasons = player.seasons.length > 12
 
     const embed = new EmbedBuilder()
@@ -65,11 +64,11 @@ export const history = {
         },
         {
           name: "Participations",
-          value: hasParticipations ? String(player.seasons.length) : "*None*",
+          value: String(player.seasons.length),
         },
         {
           name: "Average",
-          value: player.average?.toFixed(1) ?? "*No results*",
+          value: player.statistics.average.toFixed(1),
         },
         {
           name: "History",
