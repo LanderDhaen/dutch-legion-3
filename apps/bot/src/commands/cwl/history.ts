@@ -1,11 +1,16 @@
 import {
+  ActionRowBuilder,
   type AutocompleteInteraction,
+  ButtonBuilder,
+  ButtonStyle,
   type ChatInputCommandInteraction,
   EmbedBuilder,
   SlashCommandSubcommandBuilder,
 } from "discord.js"
 import { formatSeasonDate, normalizeTag } from "../../lib/util"
 import { getPlayerHistory, getPlayers } from "../../api/player"
+
+const WEBSITE_URL = process.env.WEBSITE_URL || "http://localhost:3000"
 
 export const history = {
   data: new SlashCommandSubcommandBuilder()
@@ -39,8 +44,9 @@ export const history = {
 
   async execute(interaction: ChatInputCommandInteraction) {
     const tag = interaction.options.getString("player", true)
+    const normalizedTag = normalizeTag(tag)
 
-    const { data: player, error } = await getPlayerHistory(normalizeTag(tag))
+    const { data: player, error } = await getPlayerHistory(normalizedTag)
 
     if (error) {
       throw new Error(error.value.message)
@@ -56,17 +62,14 @@ export const history = {
         {
           name: "Tag",
           value: player.tag,
-          inline: true,
         },
         {
           name: "Participations",
           value: hasParticipations ? String(player.seasons.length) : "*None*",
-          inline: true,
         },
         {
           name: "Average",
           value: player.average?.toFixed(1) ?? "*No results*",
-          inline: true,
         },
         {
           name: "History",
@@ -93,8 +96,18 @@ export const history = {
         }
       )
 
+    const url = `${WEBSITE_URL}/players/${normalizedTag}/history`
+
+    const button = new ButtonBuilder()
+      .setLabel("Website")
+      .setStyle(ButtonStyle.Link)
+      .setURL(url)
+
+    const row = new ActionRowBuilder<ButtonBuilder>().addComponents(button)
+
     await interaction.reply({
       embeds: [embed],
+      components: [row],
     })
   },
 }

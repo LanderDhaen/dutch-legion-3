@@ -86,17 +86,14 @@ export const performance = {
         {
           name: "Clan",
           value: season.clan.name,
-          inline: true,
         },
         {
           name: "League",
           value: season.league.name,
-          inline: true,
         },
         {
           name: "Modifier",
           value: season.league.modifier?.name ?? "*None*",
-          inline: true,
         },
         {
           name: "Performance",
