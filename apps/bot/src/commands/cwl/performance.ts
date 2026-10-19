@@ -63,16 +63,16 @@ export const performance = {
     const { data: season, error } = await getSeason(date, normalizeTag(tag))
 
     if (error) {
-      return console.error(error)
+      throw new Error(error.value.message)
     }
 
     const table = [
       "```text",
-      ["Stars".padStart(5), "Average".padStart(7), "Name"].join(" | "),
+      ["Stars".padStart(5), "Avg.".padStart(4), "Name"].join(" | "),
       ...season.statistics.map((stat) =>
         [
           String(stat.stars).padStart(5),
-          stat.average.toFixed(2).padStart(7),
+          stat.average.toFixed(1).padStart(4),
           stat.name,
         ].join(" | ")
       ),

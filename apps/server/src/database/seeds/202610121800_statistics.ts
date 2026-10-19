@@ -92,7 +92,7 @@ export const seed = async (db: Kysely<any>) => {
         attacks: 7,
         stars: 18,
         destruction: 668,
-        playerTag: "#9UQGJYLCV",
+        playerTag: "#8RRG0LJR2",
         participationId: 1,
       },
       {

@@ -29,18 +29,14 @@ export const seasonRouter = new Elysia({
         .innerJoin("season", "season.id", "participation.seasonId")
         .innerJoin("clan", "clan.tag", "participation.clanTag")
         .innerJoin("league", "league.id", "participation.leagueId")
-
         .select((eb) => [
           "season.date",
-
           jsonBuildObject({
             name: eb.ref("clan.name"),
             tag: eb.ref("clan.tag"),
           }).as("clan"),
-
           jsonBuildObject({
             name: eb.ref("league.name"),
-
             modifier: jsonObjectFrom(
               eb
                 .selectFrom("version")
@@ -63,7 +59,6 @@ export const seasonRouter = new Elysia({
                 .limit(1)
             ),
           }).as("league"),
-
           jsonArrayFrom(
             eb
               .selectFrom("statistic")
@@ -91,7 +86,6 @@ export const seasonRouter = new Elysia({
               .orderBy("average", "desc")
           ).as("statistics"),
         ])
-
         .where("season.date", "=", date)
         .where("participation.clanTag", "=", normalizedTag)
         .executeTakeFirst()
@@ -108,13 +102,12 @@ export const seasonRouter = new Elysia({
     {
       params: t.Object({
         date: t.String({
-          format: "date",
           pattern: "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$",
-          error: "Date must be in the YYYY-MM-DD format.",
+          message: "Date must be in the YYYY-MM-DD format.",
         }),
         tag: t.String({
           pattern: "^#?[0289PYLQGRJCUVpylqgrjcuv]{3,10}$",
-          error: "Tag must be a valid clan tag.",
+          message: "Tag must be a valid clan tag.",
         }),
       }),
     }

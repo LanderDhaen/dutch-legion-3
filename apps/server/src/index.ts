@@ -2,6 +2,7 @@ import { Elysia } from "elysia"
 import { seasonRouter } from "./routes/season"
 import { clanRouter } from "./routes/clan"
 import { logixlysia } from "logixlysia"
+import { playerRouter } from "./routes/player"
 
 const app = new Elysia()
   .use(
@@ -14,6 +15,7 @@ const app = new Elysia()
     })
   )
   .use(clanRouter)
+  .use(playerRouter)
   .use(seasonRouter)
   .listen(8000)
 

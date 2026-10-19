@@ -3,6 +3,7 @@ import {
   type ChatInputCommandInteraction,
   Client,
   Collection,
+  EmbedBuilder,
   Events,
   GatewayIntentBits,
   type SlashCommandBuilder,
@@ -44,10 +45,21 @@ client.on(Events.InteractionCreate, async (interaction) => {
       await command.execute(interaction)
     } catch (error) {
       console.error(error)
-      await interaction.reply({
-        content: "There was an error while executing this command!",
-        ephemeral: true,
-      })
+
+      const embed = new EmbedBuilder()
+        .setTitle("What happened here?")
+        .setDescription(
+          error instanceof Error && error.message
+            ? error.message
+            : `Something went wrong while executing \`${interaction.commandName}\`!`
+        )
+        .setColor("Red")
+
+      if (interaction.replied || interaction.deferred) {
+        await interaction.followUp({ embeds: [embed], ephemeral: true })
+      } else {
+        await interaction.reply({ embeds: [embed], ephemeral: true })
+      }
     }
   }
 

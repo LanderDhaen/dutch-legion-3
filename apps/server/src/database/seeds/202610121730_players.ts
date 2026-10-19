@@ -5,6 +5,10 @@ export const seed = async (db: Kysely<any>) => {
   await db
     .insertInto("player")
     .values([
+      {
+        tag: "#QCRPUPCV2",
+        name: "Lvl.2 Lander",
+      },
       { tag: "#YCG9GQGQ", name: "Menno.V" },
       { tag: "#2YV2VGLU", name: "DL timvdb" },
       { tag: "#8UY0RYQP", name: "DL✨Jesse" },

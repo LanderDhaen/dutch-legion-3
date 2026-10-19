@@ -11,91 +11,91 @@ export const seed = async (db: Kysely<any>) => {
       },
       {
         id: 48000001,
-        name: "Bronze League III",
+        name: "Bronze III",
       },
       {
         id: 48000002,
-        name: "Bronze League II",
+        name: "Bronze II",
       },
       {
         id: 48000003,
-        name: "Bronze League I",
+        name: "Bronze I",
       },
       {
         id: 48000004,
-        name: "Silver League III",
+        name: "Silver III",
       },
       {
         id: 48000005,
-        name: "Silver League II",
+        name: "Silver II",
       },
       {
         id: 48000006,
-        name: "Silver League I",
+        name: "Silver I",
       },
       {
         id: 48000007,
-        name: "Gold League III",
+        name: "Gold III",
       },
       {
         id: 48000008,
-        name: "Gold League II",
+        name: "Gold II",
       },
       {
         id: 48000009,
-        name: "Gold League I",
+        name: "Gold I",
       },
       {
         id: 48000010,
-        name: "Crystal League III",
+        name: "Crystal III",
       },
       {
         id: 48000011,
-        name: "Crystal League II",
+        name: "Crystal II",
       },
       {
         id: 48000012,
-        name: "Crystal League I",
+        name: "Crystal I",
       },
       {
         id: 48000013,
-        name: "Master League III",
+        name: "Master III",
       },
       {
         id: 48000014,
-        name: "Master League II",
+        name: "Master II",
       },
       {
         id: 48000015,
-        name: "Master League I",
+        name: "Master I",
       },
       {
         id: 48000016,
-        name: "Champion League III",
+        name: "Champion III",
       },
       {
         id: 48000017,
-        name: "Champion League II",
+        name: "Champion II",
       },
       {
         id: 48000018,
-        name: "Champion League I",
+        name: "Champion I",
       },
       {
         id: 48000019,
-        name: "Titan League III",
+        name: "Titan III",
       },
       {
         id: 48000020,
-        name: "Titan League II",
+        name: "Titan II",
       },
       {
         id: 48000021,
-        name: "Titan League I",
+        name: "Titan I",
       },
       {
         id: 48000022,
-        name: "Legend League",
+        name: "Legend",
       },
     ])
     .execute()
