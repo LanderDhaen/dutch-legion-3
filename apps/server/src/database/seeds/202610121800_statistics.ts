@@ -3824,7 +3824,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#2PVRPVVQQ",
@@ -3833,7 +3833,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#8UY0RYQP",
@@ -3842,7 +3842,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 698,
         playerTag: "#L00PRVC",
@@ -3851,7 +3851,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 697,
         playerTag: "#8GPRGURLV",
@@ -3860,7 +3860,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 685,
         playerTag: "#Q2VGJYLJ",
@@ -3869,7 +3869,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 682,
         playerTag: "#2J22G0CPQ",
@@ -3878,7 +3878,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 17,
         destruction: 597,
         playerTag: "#YLJRJRJ88",
@@ -3887,7 +3887,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 17,
         destruction: 588,
         playerTag: "#CY9CGJJR",
@@ -3896,7 +3896,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 684,
         playerTag: "#8RRG0LJR2",
@@ -3905,7 +3905,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 670,
         playerTag: "#80JQR8Q9U",
@@ -3914,7 +3914,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 16,
         destruction: 568,
         playerTag: "#Y2CVYJJQ",
@@ -3923,7 +3923,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 688,
         playerTag: "#2YV290GLL",
@@ -3932,7 +3932,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 681,
         playerTag: "#LYG0RU8V",
@@ -3941,7 +3941,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 15,
         destruction: 565,
         playerTag: "#LPL2QRL92",
@@ -3950,7 +3950,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 5,
-        attacks: 0,
+        attacks: 5,
         stars: 12,
         destruction: 457,
         playerTag: "#22QY82CR",
@@ -3959,7 +3959,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 13,
         destruction: 548,
         playerTag: "#J92L20R8",
@@ -3968,7 +3968,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 698,
         playerTag: "#YVRRUGCJV",
@@ -3977,7 +3977,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 695,
         playerTag: "#89PYRVYQC",
@@ -3986,7 +3986,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 693,
         playerTag: "#J8QP80L",
@@ -3995,7 +3995,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 691,
         playerTag: "#YVCLRY98U",
@@ -4004,7 +4004,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 694,
         playerTag: "#QUV88J9GJ",
@@ -4013,7 +4013,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 679,
         playerTag: "#2VVPCQLJ",
@@ -4022,7 +4022,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 664,
         playerTag: "#8LU98YR82",
@@ -4031,7 +4031,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 690,
         playerTag: "#9R8C8PCPG",
@@ -4040,7 +4040,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 672,
         playerTag: "#GRGJQLR9",
@@ -4049,7 +4049,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 662,
         playerTag: "#PGUGUPL2",
@@ -4058,7 +4058,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 15,
         destruction: 576,
         playerTag: "#2YV2VGLU",
@@ -4067,7 +4067,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 4,
-        attacks: 0,
+        attacks: 4,
         stars: 10,
         destruction: 387,
         playerTag: "#U22YJRCU",
@@ -4076,7 +4076,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 17,
         destruction: 647,
         playerTag: "#UVYRLJ0J",
@@ -4085,7 +4085,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 14,
         destruction: 569,
         playerTag: "#JG02RC2G",
@@ -4094,7 +4094,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 12,
         destruction: 546,
         playerTag: "#2P8YUVVPP",
@@ -4103,7 +4103,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 12,
         destruction: 506,
         playerTag: "#29QVYRCY9",
@@ -4112,7 +4112,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 676,
         playerTag: "#8QY8Y9P2Q",
@@ -4121,7 +4121,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 666,
         playerTag: "#2GYGQ829",
@@ -4130,7 +4130,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 687,
         playerTag: "#PVPV2U0JG",
@@ -4139,7 +4139,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 683,
         playerTag: "#C89V9L98",
@@ -4148,7 +4148,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 677,
         playerTag: "#R028VRC",
@@ -4157,7 +4157,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 667,
         playerTag: "#9V2LGPQR0",
@@ -4166,7 +4166,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 690,
         playerTag: "#YQVPP0YL",
@@ -4175,7 +4175,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 673,
         playerTag: "#9PVGGR08P",
@@ -4184,7 +4184,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 661,
         playerTag: "#8URQCQJJ",
@@ -4193,7 +4193,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 660,
         playerTag: "#8992RLR8",
@@ -4202,7 +4202,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 637,
         playerTag: "#2LLVVY9GP",
@@ -4211,7 +4211,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 15,
         destruction: 561,
         playerTag: "#2LQYRYURC",
@@ -4220,7 +4220,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 16,
         destruction: 650,
         playerTag: "#UVUVJJV8",
@@ -4229,7 +4229,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 16,
         destruction: 631,
         playerTag: "#PUVUV80P",
@@ -4238,7 +4238,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 5,
-        attacks: 0,
+        attacks: 5,
         stars: 10,
         destruction: 467,
         playerTag: "#JYVPCVYP",
@@ -4247,7 +4247,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 3,
-        attacks: 0,
+        attacks: 2,
         stars: 3,
         destruction: 182,
         playerTag: "#8YLCVUYJ",
@@ -4256,7 +4256,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#L8YR09YL",
@@ -4265,7 +4265,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 695,
         playerTag: "#C008CYCV",
@@ -4274,7 +4274,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 681,
         playerTag: "#YCG9GQGQ",
@@ -4283,7 +4283,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 666,
         playerTag: "#28V8Q2V8P",
@@ -4292,7 +4292,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 675,
         playerTag: "#QRRVJRJG",
@@ -4301,7 +4301,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 17,
         destruction: 679,
         playerTag: "#RCCVRJPR",
@@ -4310,7 +4310,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 17,
         destruction: 670,
         playerTag: "#R0VQRJCR",
@@ -4319,7 +4319,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 17,
         destruction: 651,
         playerTag: "#RYYQGY8C",
@@ -4328,7 +4328,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 17,
         destruction: 620,
         playerTag: "#PJGQUP2UY",
@@ -4337,7 +4337,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 16,
         destruction: 661,
         playerTag: "#CVQYP8QR",
@@ -4346,7 +4346,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 16,
         destruction: 565,
         playerTag: "#9LRYUU2C",
@@ -4355,7 +4355,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 14,
         destruction: 656,
         playerTag: "#UQJ89800",
@@ -4364,7 +4364,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 14,
         destruction: 567,
         playerTag: "#QP2U2YUVL",
@@ -4373,7 +4373,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 14,
         destruction: 552,
         playerTag: "#LPLPRPJ0V",
@@ -4382,7 +4382,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 6,
         stars: 13,
         destruction: 544,
         playerTag: "#8099PG8PR",
@@ -4391,7 +4391,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 3,
-        attacks: 0,
+        attacks: 3,
         stars: 5,
         destruction: 195,
         playerTag: "#9YQVPPRUJ",
@@ -4400,7 +4400,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#9VLYC2LVG",
@@ -4409,7 +4409,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#8L9L2G98U",
@@ -4418,7 +4418,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#9PJ0PR002",
@@ -4427,7 +4427,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 682,
         playerTag: "#28YL2G9QR",
@@ -4436,7 +4436,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 663,
         playerTag: "#9800RV2RY",
@@ -4445,7 +4445,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 663,
         playerTag: "#9LY8GG8J8",
@@ -4454,7 +4454,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#9Y20UQQL",
@@ -4463,7 +4463,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#R28LQJG8",
@@ -4472,7 +4472,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#98U0URJLJ",
@@ -4481,7 +4481,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 18,
         destruction: 600,
         playerTag: "#GQU29808",
@@ -4490,7 +4490,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 690,
         playerTag: "#9UQGJYLCV",
@@ -4499,7 +4499,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 687,
         playerTag: "#8GQ929C",
@@ -4508,7 +4508,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 680,
         playerTag: "#2VYRJ82VJ",
@@ -4517,7 +4517,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 5,
-        attacks: 0,
+        attacks: 5,
         stars: 14,
         destruction: 493,
         playerTag: "#VL0LG82",
@@ -4526,7 +4526,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 3,
-        attacks: 0,
+        attacks: 3,
         stars: 8,
         destruction: 280,
         playerTag: "#GCUPC9YL",
@@ -4535,7 +4535,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 657,
         playerTag: "#PGJURLPPJ",
@@ -4544,7 +4544,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 4,
-        attacks: 0,
+        attacks: 4,
         stars: 12,
         destruction: 400,
         playerTag: "#2PPCVLR2",
@@ -4553,7 +4553,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 1,
-        attacks: 0,
+        attacks: 1,
         stars: 3,
         destruction: 100,
         playerTag: "#8UQ9LGYQ",
@@ -4562,7 +4562,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 676,
         playerTag: "#R99JRU08",
@@ -4571,7 +4571,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 646,
         playerTag: "#LYY0R890C",
@@ -4580,7 +4580,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 654,
         playerTag: "#YU9G90YJQ",
@@ -4589,7 +4589,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 17,
         destruction: 621,
         playerTag: "#YCYCGQ8JR",
@@ -4598,7 +4598,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 15,
         destruction: 625,
         playerTag: "#U8QG9L8R",
@@ -4607,7 +4607,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 14,
         destruction: 567,
         playerTag: "#829ULL80V",
@@ -4616,7 +4616,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 3,
-        attacks: 0,
+        attacks: 2,
         stars: 5,
         destruction: 567,
         playerTag: "#2LQ0YPP8",
@@ -4625,7 +4625,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 15,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#QVPYGYR8C",
@@ -4634,7 +4634,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 15,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 699,
         playerTag: "#8U8P2RVG",
@@ -4643,7 +4643,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 15,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 699,
         playerTag: "#CY9CGJJR",
@@ -4652,7 +4652,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 15,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 691,
         playerTag: "#PCY02UUU9",
@@ -4661,7 +4661,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 15,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 681,
         playerTag: "#9RC2PCQC",
@@ -4670,7 +4670,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 15,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 665,
         playerTag: "#GJ8Y8Y9L2",
@@ -4679,7 +4679,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 15,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 654,
         playerTag: "#ULP0Y98C",
@@ -4688,7 +4688,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 15,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 16,
         destruction: 600,
         playerTag: "#8QY8Y9P2Q",
@@ -4697,7 +4697,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 15,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 666,
         playerTag: "#CYPYGGU9",
@@ -4706,7 +4706,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 15,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 16,
         destruction: 628,
         playerTag: "#2RR9CR8YP",
@@ -4715,7 +4715,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 14,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 685,
         playerTag: "#GPLQ2099P",
@@ -4724,7 +4724,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 14,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 681,
         playerTag: "#G28Y0ULJC",
@@ -4733,7 +4733,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 14,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 653,
         playerTag: "#8P2QC0G2J",
@@ -4742,7 +4742,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 14,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 693,
         playerTag: "#2LJUGP9QL",
@@ -4751,7 +4751,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 14,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 627,
         playerTag: "#280QRV2P0",
@@ -4760,7 +4760,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 14,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 17,
         destruction: 635,
         playerTag: "#YJCPY2QUC",
@@ -4769,7 +4769,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 14,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 17,
         destruction: 610,
         playerTag: "#GY2GQY2JC",
@@ -4778,7 +4778,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 14,
         wars: 5,
-        attacks: 0,
+        attacks: 5,
         stars: 12,
         destruction: 437,
         playerTag: "#89GRGL02P",
@@ -4787,7 +4787,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 14,
         wars: 4,
-        attacks: 0,
+        attacks: 4,
         stars: 9,
         destruction: 362,
         playerTag: "#9YG8LYY8C",
@@ -4796,7 +4796,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 14,
         wars: 5,
-        attacks: 0,
+        attacks: 5,
         stars: 11,
         destruction: 416,
         playerTag: "#P8Q0G9L0",
@@ -4805,7 +4805,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 14,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 15,
         destruction: 602,
         playerTag: "#VPCU9V8C",
@@ -4814,7 +4814,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 14,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 15,
         destruction: 569,
         playerTag: "#LR8V0UYQU",
@@ -4823,7 +4823,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 13,
         wars: 3,
-        attacks: 0,
+        attacks: 3,
         stars: 9,
         destruction: 300,
         playerTag: "#G2V990J",
@@ -4832,7 +4832,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 13,
         wars: 4,
-        attacks: 0,
+        attacks: 4,
         stars: 11,
         destruction: 363,
         playerTag: "#JQPRQJRR",
@@ -4841,7 +4841,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 13,
         wars: 4,
-        attacks: 0,
+        attacks: 4,
         stars: 9,
         destruction: 343,
         playerTag: "#YC0000L9R",
@@ -4850,7 +4850,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 13,
         wars: 1,
-        attacks: 0,
+        attacks: 1,
         stars: 2,
         destruction: 82,
         playerTag: "#G0CLY8VG9",
@@ -4859,7 +4859,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 13,
         wars: 2,
-        attacks: 0,
+        attacks: 2,
         stars: 3,
         destruction: 188,
         playerTag: "#GPRCULG9U",
@@ -4868,7 +4868,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#LPL2QRL92",
@@ -4877,7 +4877,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#2PVRPVVQQ",
@@ -4886,7 +4886,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#Q2VGJYLJ",
@@ -4895,7 +4895,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 698,
         playerTag: "#L00PRVC",
@@ -4904,7 +4904,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 696,
         playerTag: "#80JQR8Q9U",
@@ -4913,7 +4913,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 695,
         playerTag: "#LYG0RU8V",
@@ -4922,7 +4922,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 687,
         playerTag: "#8UY0RYQP",
@@ -4931,7 +4931,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 681,
         playerTag: "#9R8C8PCPG",
@@ -4940,7 +4940,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 5,
-        attacks: 0,
+        attacks: 5,
         stars: 14,
         destruction: 489,
         playerTag: "#8GPRGURLV",
@@ -4949,7 +4949,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 674,
         playerTag: "#22QY82CR",
@@ -4958,7 +4958,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 666,
         playerTag: "#Y2CVYJJQ",
@@ -4967,7 +4967,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 658,
         playerTag: "#QUV88J9GJ",
@@ -4976,7 +4976,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 15,
         destruction: 562,
         playerTag: "#GRGJQLR9",
@@ -4985,7 +4985,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 17,
         destruction: 672,
         playerTag: "#8RRG0LJR2",
@@ -4994,7 +4994,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 17,
         destruction: 668,
         playerTag: "#CY9CGJJR",
@@ -5003,7 +5003,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 3,
-        attacks: 0,
+        attacks: 2,
         stars: 4,
         destruction: 181,
         playerTag: "#8LU98YR82",
@@ -5012,7 +5012,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#R028VRC",
@@ -5021,7 +5021,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#YVCLRY98U",
@@ -5030,7 +5030,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 18,
         destruction: 600,
         playerTag: "#PGUGUPL2",
@@ -5039,7 +5039,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 694,
         playerTag: "#J8QP80L",
@@ -5048,7 +5048,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 695,
         playerTag: "#L8YR09YL",
@@ -5057,7 +5057,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 690,
         playerTag: "#89PYRVYQC",
@@ -5066,7 +5066,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 682,
         playerTag: "#8992RLR8",
@@ -5075,7 +5075,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 682,
         playerTag: "#U22YJRCU",
@@ -5084,7 +5084,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 682,
         playerTag: "#9G8RPVJ0",
@@ -5093,7 +5093,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 680,
         playerTag: "#2YV2VGLU",
@@ -5102,7 +5102,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 666,
         playerTag: "#2GYGQ829",
@@ -5111,7 +5111,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 675,
         playerTag: "#C89V9L98",
@@ -5120,7 +5120,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 15,
         destruction: 551,
         playerTag: "#8URQCQJJ",
@@ -5129,7 +5129,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 15,
         destruction: 549,
         playerTag: "#2VVPCQLJ",
@@ -5138,7 +5138,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 5,
-        attacks: 0,
+        attacks: 5,
         stars: 11,
         destruction: 451,
         playerTag: "#YQVPP0YL",
@@ -5147,7 +5147,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 5,
-        attacks: 0,
+        attacks: 5,
         stars: 11,
         destruction: 445,
         playerTag: "#UVYRLJ0J",
@@ -5156,7 +5156,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#YVRRUGCJV",
@@ -5165,7 +5165,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#2LQYRYURC",
@@ -5174,7 +5174,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#PVPV2U0JG",
@@ -5183,7 +5183,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 682,
         playerTag: "#JG02RC2G",
@@ -5192,7 +5192,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 695,
         playerTag: "#QP2U2YUVL",
@@ -5201,7 +5201,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 688,
         playerTag: "#2P8YUVVPP",
@@ -5210,7 +5210,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 686,
         playerTag: "#2LLVVY9GP",
@@ -5219,7 +5219,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 673,
         playerTag: "#Q82JLLJ09",
@@ -5228,7 +5228,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 17,
         destruction: 651,
         playerTag: "#2QGJVUJU",
@@ -5237,7 +5237,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 17,
         destruction: 642,
         playerTag: "#PJGQUP2UY",
@@ -5246,7 +5246,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 14,
         destruction: 544,
         playerTag: "#9PVGGR08P",
@@ -5255,7 +5255,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 3,
-        attacks: 0,
+        attacks: 3,
         stars: 7,
         destruction: 279,
         playerTag: "#JYVPCVYP",
@@ -5264,7 +5264,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 16,
         destruction: 596,
         playerTag: "#9V2LGPQR0",
@@ -5273,7 +5273,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 5,
-        attacks: 0,
+        attacks: 5,
         stars: 11,
         destruction: 427,
         playerTag: "#UQJ89800",
@@ -5282,7 +5282,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 15,
         destruction: 667,
         playerTag: "#CVQYP8QR",
@@ -5291,7 +5291,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 696,
         playerTag: "#28YL2G9QR",
@@ -5300,7 +5300,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 695,
         playerTag: "#9800RV2RY",
@@ -5309,7 +5309,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 673,
         playerTag: "#9LRYUU2C",
@@ -5318,7 +5318,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 671,
         playerTag: "#PL8RJ00L",
@@ -5327,7 +5327,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 667,
         playerTag: "#R28LQJG8",
@@ -5336,7 +5336,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 659,
         playerTag: "#9U0CC8YC0",
@@ -5345,7 +5345,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 649,
         playerTag: "#20U8922CU",
@@ -5354,7 +5354,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 631,
         playerTag: "#GCUPC9YL",
@@ -5363,7 +5363,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 14,
         destruction: 517,
         playerTag: "#PGJURLPPJ",
@@ -5372,7 +5372,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 16,
         destruction: 614,
         playerTag: "#QRRVJRJG",
@@ -5381,7 +5381,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 15,
         destruction: 606,
         playerTag: "#2JGJR8V2",
@@ -5390,7 +5390,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 15,
         destruction: 592,
         playerTag: "#R0VQRJCR",
@@ -5399,7 +5399,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 7,
-        attacks: 0,
+        attacks: 6,
         stars: 15,
         destruction: 592,
         playerTag: "#8L9L2G98U",
@@ -5408,7 +5408,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 12,
         destruction: 506,
         playerTag: "#RYYQGY8C",
@@ -5417,7 +5417,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 17,
         wars: 4,
-        attacks: 0,
+        attacks: 4,
         stars: 6,
         destruction: 310,
         playerTag: "#G29JJRGY",
@@ -5426,7 +5426,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 5,
-        attacks: 0,
+        attacks: 5,
         stars: 15,
         destruction: 500,
         playerTag: "#UGJCPGG",
@@ -5435,7 +5435,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#9UQGJYLCV",
@@ -5444,7 +5444,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#2VYRJ82VJ",
@@ -5453,7 +5453,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#8GQ929C",
@@ -5462,7 +5462,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 1,
-        attacks: 0,
+        attacks: 1,
         stars: 3,
         destruction: 100,
         playerTag: "#2LQ0YPP8",
@@ -5471,7 +5471,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 689,
         playerTag: "#VL0LG82",
@@ -5480,7 +5480,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 677,
         playerTag: "#YCYCGQ8JR",
@@ -5489,7 +5489,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 687,
         playerTag: "#GQU29808",
@@ -5498,7 +5498,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 683,
         playerTag: "#LYY0R890C",
@@ -5507,7 +5507,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 668,
         playerTag: "#9Y20UQQL",
@@ -5516,7 +5516,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 639,
         playerTag: "#U8QG9L8R",
@@ -5525,7 +5525,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 686,
         playerTag: "#GJ8Y8Y9L2",
@@ -5534,7 +5534,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 675,
         playerTag: "#YU9G90YJQ",
@@ -5543,7 +5543,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 15,
         destruction: 595,
         playerTag: "#829ULL80V",
@@ -5552,7 +5552,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 16,
         wars: 6,
-        attacks: 0,
+        attacks: 4,
         stars: 10,
         destruction: 357,
         playerTag: "#R99JRU08",
@@ -5561,7 +5561,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 15,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#8U8P2RVG",
@@ -5570,7 +5570,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 15,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#2RR9CR8YP",
@@ -5579,7 +5579,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 15,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#QVPYGYR8C",
@@ -5588,7 +5588,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 15,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 699,
         playerTag: "#CY9CGJJR",
@@ -5597,7 +5597,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 15,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 672,
         playerTag: "#P8Q0G9L0",
@@ -5606,7 +5606,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 15,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 670,
         playerTag: "#GL0QGCC9U",
@@ -5615,7 +5615,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 15,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 688,
         playerTag: "#CYPYGGU9",
@@ -5624,7 +5624,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 15,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 677,
         playerTag: "#PCY02UUU9",
@@ -5633,7 +5633,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 15,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 665,
         playerTag: "#GY2GQY2JC",
@@ -5642,7 +5642,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 15,
         wars: 2,
-        attacks: 0,
+        attacks: 1,
         stars: 2,
         destruction: 96,
         playerTag: "#VPCU9V8C",
@@ -5651,7 +5651,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 14,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 21,
         destruction: 700,
         playerTag: "#8P2QC0G2J",
@@ -5660,7 +5660,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 14,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 18,
         destruction: 600,
         playerTag: "#PGCPV0LJ2",
@@ -5669,7 +5669,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 14,
         wars: 6,
-        attacks: 0,
+        attacks: 6,
         stars: 18,
         destruction: 600,
         playerTag: "#JQPRQJRR",
@@ -5678,7 +5678,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 14,
         wars: 5,
-        attacks: 0,
+        attacks: 5,
         stars: 15,
         destruction: 500,
         playerTag: "#89GRGL02P",
@@ -5687,7 +5687,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 14,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 697,
         playerTag: "#280QRV2P0",
@@ -5696,7 +5696,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 14,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 19,
         destruction: 690,
         playerTag: "#YJCPY2QUC",
@@ -5705,7 +5705,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 14,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 18,
         destruction: 598,
         playerTag: "#GPLQ2099P",
@@ -5714,7 +5714,7 @@ export const seed = async (db: Kysely<any>) => {
       {
         townhall: 13,
         wars: 7,
-        attacks: 0,
+        attacks: 7,
         stars: 20,
         destruction: 674,
         playerTag: "#YC0000L9R",
