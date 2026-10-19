@@ -57,34 +57,30 @@ export default async function Page({
             <Table>
               <TableHeader className="bg-muted">
                 <TableRow>
-                  <TableHead className="w-4 text-right font-bold">#</TableHead>
-                  <TableHead>Account</TableHead>
-                  <TableHead className="w-36 text-right font-bold">
+                  <TableHead className="w-48 font-bold">Account</TableHead>
+                  <TableHead className="w-32 text-right font-bold">
                     Townhall
                   </TableHead>
-                  <TableHead className="w-36 text-right font-bold">
+                  <TableHead className="w-32 text-right font-bold">
                     Wars
                   </TableHead>
-                  <TableHead className="w-36 text-right font-bold">
+                  <TableHead className="w-32 text-right font-bold">
                     Stars
                   </TableHead>
-                  <TableHead className="w-36 text-right font-bold">
+                  <TableHead className="w-32 text-right font-bold">
                     Destruction
                   </TableHead>
-                  <TableHead className="w-36 text-right font-bold">
+                  <TableHead className="w-32 text-right font-bold">
                     Average
                   </TableHead>
-                  <TableHead className="w-36 text-right font-bold">
+                  <TableHead className="w-32 text-right font-bold">
                     Missed
                   </TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {season.statistics.map((statistic, index) => (
+                {season.statistics.map((statistic) => (
                   <TableRow key={statistic.tag}>
-                    <TableCell className="text-right tabular-nums">
-                      {index + 1}.
-                    </TableCell>
                     <TableCell>{statistic.name}</TableCell>
                     <TableCell className="text-right">
                       <Badge variant="secondary" className="tabular-nums">

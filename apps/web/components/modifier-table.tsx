@@ -82,7 +82,7 @@ export default function ModifierTable({ modifier }: ModifierTableProps) {
         <Table>
           <TableHeader className="bg-muted">
             <TableRow>
-              <TableHead className="h-2 text-xs">Equipment</TableHead>
+              <TableHead className="h-8 text-xs">Equipment</TableHead>
               <TableHead colSpan={2} className="h-8 text-right text-xs">
                 Cap
               </TableHead>

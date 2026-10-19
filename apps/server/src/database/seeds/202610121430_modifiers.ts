@@ -6,13 +6,13 @@ export const seed = async (db: Kysely<any>) => {
     .insertInto("modifier")
     .values([
       {
-        name: "Legend League III",
+        name: "Legend III",
       },
       {
-        name: "Legend League II",
+        name: "Legend II",
       },
       {
-        name: "Legend League I",
+        name: "Legend I",
       },
       {
         name: "eSports",
