@@ -62,3 +62,44 @@ export const withOverallCalculatedStatistics = () => {
     ])
     .groupBy("statistic.playerTag")
 }
+
+export const withMemberOverallCalculatedStatistics = () => {
+  const eb = expressionBuilder<Database>()
+
+  return eb
+    .selectFrom("statistic")
+    .innerJoin("player", "player.tag", "statistic.playerTag")
+    .select((eb) => [
+      "player.memberId",
+      eb.fn.count<number>("statistic.id").as("participations"),
+      eb.fn.coalesce(eb.fn.sum<number>("statistic.wars"), eb.val(0)).as("wars"),
+      eb.fn
+        .coalesce(eb.fn.sum<number>("statistic.stars"), eb.val(0))
+        .as("stars"),
+      eb.fn
+        .coalesce(eb.fn.sum<number>("statistic.destruction"), eb.val(0))
+        .as("destruction"),
+      eb(
+        eb.cast<number>(
+          eb.fn.coalesce(eb.fn.sum("statistic.stars"), eb.val(0)),
+          "double precision"
+        ),
+        "/",
+        eb.fn<number | null>("nullif", [
+          eb.fn.sum<number>("statistic.wars"),
+          eb.val(0),
+        ])
+      ).as("average"),
+      eb.fn
+        .coalesce(
+          eb(
+            eb.fn.sum<number>("statistic.wars"),
+            "-",
+            eb.fn.sum<number>("statistic.attacks")
+          ),
+          eb.val(0)
+        )
+        .as("missed"),
+    ])
+    .groupBy("player.memberId")
+}
