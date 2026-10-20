@@ -1,12 +1,23 @@
 export interface Database {
+  member: Member
+  player: Player
   modifier: Modifier
   version: Version
   league: League
   clan: Clan
   season: Season
   participation: Participation
-  player: Player
   statistic: Statistic
+}
+
+interface Member {
+  id: string
+}
+
+interface Player {
+  tag: string
+  name: string
+  memberId: string | null
 }
 
 interface Modifier {
@@ -50,12 +61,6 @@ interface Participation {
   leagueId: number
   modifierId: number | null
   seasonId: number
-}
-
-interface Player {
-  tag: string
-  name: string
-  discordId: string | null
 }
 
 interface Statistic {
