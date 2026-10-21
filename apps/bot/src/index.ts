@@ -12,6 +12,7 @@ import {
 } from "discord.js"
 import { cwl } from "./commands/cwl"
 import { member } from "./commands/member"
+import { player } from "./commands/player"
 
 interface Command {
   data:
@@ -38,6 +39,7 @@ client.once(Events.ClientReady, (readyClient) => {
 
 client.commands.set(cwl.data.name, cwl)
 client.commands.set(member.data.name, member)
+client.commands.set(player.data.name, player)
 
 client.on(Events.InteractionCreate, async (interaction) => {
   if (interaction.isChatInputCommand()) {

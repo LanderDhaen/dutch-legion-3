@@ -4,6 +4,7 @@ import {
   ButtonBuilder,
   ButtonStyle,
   type ChatInputCommandInteraction,
+  codeBlock,
   EmbedBuilder,
   SlashCommandSubcommandBuilder,
 } from "discord.js"
@@ -12,18 +13,17 @@ import { getPlayerHistory, getPlayers } from "../../api/player"
 
 const WEBSITE_URL = process.env.WEBSITE_URL || "http://localhost:3000"
 
-export const history = {
+export const stats = {
   data: new SlashCommandSubcommandBuilder()
-    .setName("history")
-    .setDescription("Display the CWL history for a player")
+    .setName("stats")
+    .setDescription("Display the CWL statistics for a player")
     .addStringOption((option) =>
       option
         .setName("player")
-        .setDescription("The player to display the history for")
+        .setDescription("The player to display the statistics for")
         .setRequired(true)
         .setAutocomplete(true)
     ),
-
   async autocomplete(interaction: AutocompleteInteraction) {
     const focusedOption = interaction.options.getFocused(true)
 
@@ -41,7 +41,6 @@ export const history = {
       )
     }
   },
-
   async execute(interaction: ChatInputCommandInteraction) {
     const tag = interaction.options.getString("player", true)
     const normalizedTag = normalizeTag(tag)
@@ -56,8 +55,12 @@ export const history = {
 
     const embed = new EmbedBuilder()
       .setColor("Green")
-      .setTitle(`CWL History  •  ${player.name}`)
+      .setTitle("CWL Statistics")
       .addFields(
+        {
+          name: "Account",
+          value: player.name,
+        },
         {
           name: "Tag",
           value: player.tag,
@@ -71,27 +74,30 @@ export const history = {
           value: player.statistics.average.toFixed(1),
         },
         {
-          name: "History",
-          value: [
-            "```text",
-            ["Season".padEnd(12), "Avg.".padStart(4), "League".padEnd(12)].join(
-              " | "
-            ),
-            ...player.seasons
-              .slice(0, 12)
-              .map((season) =>
-                [
-                  formatSeasonDate(season.date).padEnd(12),
-                  season.average.toFixed(1).padStart(4),
-                  season.league.name.padEnd(12),
-                ].join(" | ")
-              ),
-            "",
-            leftoverSeasons > 0
-              ? `+${leftoverSeasons} more ${leftoverSeasons === 1 ? "season" : "seasons"}`
-              : "",
-            "```",
-          ].join("\n"),
+          name: "Seasons",
+          value: codeBlock(
+            "text",
+            [
+              [
+                "Season".padEnd(12),
+                "Avg.".padStart(4),
+                "League".padEnd(12),
+              ].join(" | "),
+              ...player.seasons
+                .slice(0, 12)
+                .map((season) =>
+                  [
+                    formatSeasonDate(season.date).padEnd(12),
+                    season.average.toFixed(1).padStart(4),
+                    season.league.name.padEnd(12),
+                  ].join(" | ")
+                ),
+              "",
+              leftoverSeasons > 0
+                ? `+${leftoverSeasons} more ${leftoverSeasons === 1 ? "season" : "seasons"}`
+                : "",
+            ].join("\n")
+          ),
         }
       )
 
