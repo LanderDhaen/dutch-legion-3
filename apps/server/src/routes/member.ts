@@ -5,7 +5,7 @@ import { IdentifierNode } from "kysely"
 export const memberRouter = new Elysia({
   prefix: "/members",
 }).get(
-  "/:id/history",
+  "/:id/statistics",
   async ({ params: { id }, status }) => {
     const member = await getMemberHistory(id)
 

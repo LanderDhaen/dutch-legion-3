@@ -1,5 +1,6 @@
 import { REST, Routes } from "discord.js"
 import { cwl } from "./commands/cwl"
+import { member } from "./commands/member"
 
 const TOKEN = process.env.DISCORD_TOKEN
 const CLIENT_ID = process.env.CLIENT_ID
@@ -11,7 +12,7 @@ if (!TOKEN || !CLIENT_ID || !GUILD_ID) {
 
 const rest = new REST().setToken(TOKEN)
 
-const commands = [cwl.data.toJSON()]
+const commands = [cwl.data.toJSON(), member.data.toJSON()]
 
 try {
   console.log(`Refreshing ${commands.length} application commands...`)

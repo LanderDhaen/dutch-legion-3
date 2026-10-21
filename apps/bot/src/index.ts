@@ -11,6 +11,7 @@ import {
   type SlashCommandSubcommandsOnlyBuilder,
 } from "discord.js"
 import { cwl } from "./commands/cwl"
+import { member } from "./commands/member"
 
 interface Command {
   data:
@@ -27,13 +28,16 @@ export class BotClient extends Client {
 
 const token = process.env.DISCORD_TOKEN
 
-const client = new BotClient({ intents: [GatewayIntentBits.Guilds] })
+const client = new BotClient({
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers],
+})
 
 client.once(Events.ClientReady, (readyClient) => {
   console.log(`Ready! Logged in as ${readyClient.user.tag}`)
 })
 
 client.commands.set(cwl.data.name, cwl)
+client.commands.set(member.data.name, member)
 
 client.on(Events.InteractionCreate, async (interaction) => {
   if (interaction.isChatInputCommand()) {
