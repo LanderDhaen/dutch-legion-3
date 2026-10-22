@@ -1,3 +1,4 @@
+import { formatModifier } from "@web/lib/util"
 import {
   Table,
   TableBody,
@@ -50,8 +51,6 @@ export default function ModifierTable({ modifier }: ModifierTableProps) {
     { name: "Epic", level: modifier.epicEquipmentCap },
   ]
 
-  const formatPercentage = (value: number) => `${value > 0 ? "+" : ""}${value}%`
-
   return (
     <>
       <div className="overflow-hidden rounded-md border">
@@ -68,10 +67,10 @@ export default function ModifierTable({ modifier }: ModifierTableProps) {
               <TableRow key={item.name}>
                 <TableCell className="py-2 text-xs">{item.name}</TableCell>
                 <TableCell className="py-2 text-right text-xs tabular-nums">
-                  {formatPercentage(item.dps)}
+                  {formatModifier(item.dps)}
                 </TableCell>
                 <TableCell className="py-2 text-right text-xs tabular-nums">
-                  {item.hp ? formatPercentage(item.hp) : "-"}
+                  {formatModifier(item.hp)}
                 </TableCell>
               </TableRow>
             ))}

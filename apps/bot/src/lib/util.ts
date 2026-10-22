@@ -21,6 +21,14 @@ export const formatSeasonDate = (dateString: string) => {
   })
 }
 
+export const formatAverage = (average: number) => {
+  return average.toLocaleString("en-US", {
+    style: "decimal",
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  })
+}
+
 export const getCommandName = (
   interaction: ChatInputCommandInteraction<"cached">
 ) =>

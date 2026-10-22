@@ -7,7 +7,7 @@ import {
   SlashCommandSubcommandBuilder,
 } from "discord.js"
 import { getMemberHistory } from "../../api/member"
-import { getCommandName } from "../../lib/util"
+import { formatAverage, getCommandName } from "../../lib/util"
 
 export const stats = {
   data: new SlashCommandSubcommandBuilder()
@@ -95,7 +95,7 @@ export const stats = {
         },
         {
           name: "Average",
-          value: member.statistics.average.toFixed(1),
+          value: formatAverage(member.statistics.average),
         },
         {
           name: "Accounts",
@@ -106,7 +106,7 @@ export const stats = {
               ...member.players.map((player) =>
                 [
                   String(player.statistics.participations).padStart(7),
-                  player.statistics.average.toFixed(1).padStart(4),
+                  formatAverage(player.statistics.average).padStart(4),
                   player.name,
                 ].join(" | ")
               ),

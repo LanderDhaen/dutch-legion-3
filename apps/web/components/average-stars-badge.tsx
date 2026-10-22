@@ -1,3 +1,4 @@
+import { formatAverage } from "@web/lib/util"
 import { Badge } from "@workspace/ui/components/badge"
 import { Star } from "lucide-react"
 
@@ -26,7 +27,7 @@ export default function AverageStarsBadge({ average }: { average: number }) {
 
   return (
     <Badge className={badgeClass}>
-      {average.toFixed(1)}
+      {formatAverage(average)}
       <Star className={starClass} data-icon="inline-end" />
     </Badge>
   )

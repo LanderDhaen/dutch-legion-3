@@ -11,7 +11,12 @@ import {
   MessageFlags,
   SlashCommandSubcommandBuilder,
 } from "discord.js"
-import { formatSeasonDate, getCommandName, normalizeTag } from "../../lib/util"
+import {
+  formatAverage,
+  formatSeasonDate,
+  getCommandName,
+  normalizeTag,
+} from "../../lib/util"
 import { getPlayerHistory, getPlayers } from "../../api/player"
 
 const WEBSITE_URL = process.env.WEBSITE_URL || "http://localhost:3000"
@@ -107,7 +112,7 @@ export const stats = {
         },
         {
           name: "Average",
-          value: player.statistics.average.toFixed(1),
+          value: formatAverage(player.statistics.average),
         },
         {
           name: "Seasons",
@@ -124,7 +129,7 @@ export const stats = {
                 .map((season) =>
                   [
                     formatSeasonDate(season.date).padEnd(12),
-                    season.average.toFixed(1).padStart(4),
+                    formatAverage(season.average).padStart(4),
                     season.league.name.padEnd(12),
                   ].join(" | ")
                 ),

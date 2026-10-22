@@ -13,7 +13,12 @@ import {
 } from "discord.js"
 import { getClans } from "../../api/clan"
 import { getSeason, getSeasonOptions } from "../../api/season"
-import { formatSeasonDate, getCommandName, normalizeTag } from "../../lib/util"
+import {
+  formatAverage,
+  formatSeasonDate,
+  getCommandName,
+  normalizeTag,
+} from "../../lib/util"
 
 const WEBSITE_URL = process.env.WEBSITE_URL || "http://localhost:3000"
 
@@ -142,7 +147,7 @@ export const stats = {
               ...season.performances.map((performance) =>
                 [
                   String(performance.statistics.stars).padStart(5),
-                  performance.statistics.average.toFixed(1).padStart(4),
+                  formatAverage(performance.statistics.average).padStart(4),
                   performance.name,
                 ].join(" | ")
               ),

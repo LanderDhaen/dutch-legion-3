@@ -14,3 +14,21 @@ export const formatSeasonDate = (dateString: string) => {
     year: "numeric",
   })
 }
+
+export const formatAverage = (average: number) => {
+  return average.toLocaleString("en-US", {
+    style: "decimal",
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  })
+}
+
+export const formatModifier = (modifier: number | null) => {
+  if (modifier === 0 || modifier === null) {
+    return "-"
+  }
+
+  return `${modifier.toLocaleString("en-US", {
+    signDisplay: "exceptZero",
+  })}%`
+}
