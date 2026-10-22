@@ -29,7 +29,9 @@ export default async function Page({
 }) {
   const { tag } = await params
 
-  const { data: player, error } = await api.players({ tag: tag }).history.get()
+  const { data: player, error } = await api
+    .players({ tag: tag })
+    .statistics.get()
 
   if (error) {
     notFound()

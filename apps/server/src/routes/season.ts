@@ -10,7 +10,7 @@ export const seasonRouter = new Elysia({
     return await getSeasons()
   })
   .get(
-    "/:date/clans/:tag",
+    "/:date/clans/:tag/statistics",
     async ({ params: { date, tag }, status }) => {
       const normalizedTag = normalizeTag(tag)
 

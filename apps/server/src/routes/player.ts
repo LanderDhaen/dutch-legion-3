@@ -10,7 +10,7 @@ export const playerRouter = new Elysia({
     return getPlayers()
   })
   .get(
-    "/:tag/history",
+    "/:tag/statistics",
     async ({ params: { tag }, status }) => {
       const normalizedTag = normalizeTag(tag)
 

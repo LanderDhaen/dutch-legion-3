@@ -26,5 +26,5 @@ export const getPlayers = async () => {
 }
 
 export const getPlayerHistory = async (tag: string) => {
-  return await api.players({ tag }).history.get()
+  return await api.players({ tag }).statistics.get()
 }

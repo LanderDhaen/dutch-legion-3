@@ -33,7 +33,7 @@ export default async function Page({
   const { data: season, error } = await api
     .seasons({ date: date })
     .clans({ tag: tag })
-    .get()
+    .statistics.get()
 
   if (error) {
     notFound()
@@ -45,8 +45,8 @@ export default async function Page({
         <CardHeader>
           <CardDescription>Statistics</CardDescription>
           <CardTitle className="flex items-center justify-between font-bold">
-            <span>{season.clan.name}</span>
             <span>{formatSeasonDate(season.date)}</span>
+            <span>{season.clan.name}</span>
           </CardTitle>
         </CardHeader>
         <CardContent>

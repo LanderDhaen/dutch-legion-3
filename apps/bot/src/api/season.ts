@@ -27,5 +27,5 @@ export const getSeasonOptions = async () => {
 }
 
 export const getSeason = async (date: string, clanTag: string) => {
-  return api.seasons({ date }).clans({ tag: clanTag }).get()
+  return api.seasons({ date }).clans({ tag: clanTag }).statistics.get()
 }
