@@ -1,10 +1,14 @@
 import {
   ActionRowBuilder,
   type AutocompleteInteraction,
+  bold,
   ButtonBuilder,
   ButtonStyle,
   type ChatInputCommandInteraction,
+  codeBlock,
   EmbedBuilder,
+  inlineCode,
+  MessageFlags,
   SlashCommandSubcommandBuilder,
 } from "discord.js"
 import { getClans } from "../../api/clan"
@@ -63,21 +67,51 @@ export const stats = {
     const { data: season, error } = await getSeason(date, normalizeTag(tag))
 
     if (error) {
-      throw new Error(error.value.message)
+      const embed = new EmbedBuilder()
+        .setColor("Red")
+        .setTitle("What happened here?")
+        .setDescription(
+          `Something went wrong while executing ${inlineCode(`${interaction.commandName} ${interaction.options.getSubcommand()}`)}!`
+        )
+
+      if (error.status === 404) {
+        embed.setDescription(
+          `There's no data for ${inlineCode(normalizeTag(tag))} in season ${inlineCode(date)}.`
+        )
+      }
+
+      if (error.status === 422) {
+        if (error.value.property === "tag") {
+          embed.setDescription(
+            `${inlineCode(normalizeTag(tag))} is not a valid clan tag.`
+          )
+        }
+
+        if (error.value.property === "date") {
+          embed.setDescription(
+            `${inlineCode(date)} is not a valid season date.`
+          )
+        }
+      }
+
+      return await interaction.reply({
+        embeds: [embed],
+        flags: MessageFlags.Ephemeral,
+      })
     }
 
-    const table = [
-      "```text",
-      ["Stars".padStart(5), "Avg.".padStart(4), "Name"].join(" | "),
-      ...season.performances.map((performance) =>
-        [
-          String(performance.statistics.stars).padStart(5),
-          performance.statistics.average.toFixed(1).padStart(4),
-          performance.name,
-        ].join(" | ")
-      ),
-      "```",
-    ].join("\n")
+    if (season.performances.length === 0) {
+      const embed = new EmbedBuilder()
+        .setColor("Red")
+        .setTitle("What happened here?")
+        .setDescription(
+          `${bold(season.clan.name)} has no statistics available for ${bold(formatSeasonDate(season.date))}.`
+        )
+      return await interaction.reply({
+        embeds: [embed],
+        flags: MessageFlags.Ephemeral,
+      })
+    }
 
     const embed = new EmbedBuilder()
       .setColor("Green")
@@ -96,8 +130,20 @@ export const stats = {
           value: season.league.modifier?.name ?? "*None*",
         },
         {
-          name: "Performance",
-          value: table,
+          name: "Performances",
+          value: codeBlock(
+            "text",
+            [
+              ["Stars".padStart(5), "Avg.".padStart(4), "Name"].join(" | "),
+              ...season.performances.map((performance) =>
+                [
+                  String(performance.statistics.stars).padStart(5),
+                  performance.statistics.average.toFixed(1).padStart(4),
+                  performance.name,
+                ].join(" | ")
+              ),
+            ].join("\n")
+          ),
         }
       )
 

@@ -1,6 +1,7 @@
-import { Elysia, t } from "elysia"
+import { Elysia } from "elysia"
 import { getMemberHistory } from "./../services/member"
-import { IdentifierNode } from "kysely"
+import z from "zod"
+import { DISCORD_ID_REGEX } from "../lib/util"
 
 export const memberRouter = new Elysia({
   prefix: "/members",
@@ -12,15 +13,17 @@ export const memberRouter = new Elysia({
     if (!member) {
       return status(404, {
         code: "NOT_FOUND",
-        message: `There's no data for ${IdentifierNode}.`,
+        message: `${id} has no statistics available.`,
       })
     }
 
     return member
   },
   {
-    params: t.Object({
-      id: t.String(),
+    params: z.object({
+      id: z.string().regex(DISCORD_ID_REGEX, {
+        error: "This is not a valid member ID.",
+      }),
     }),
   }
 )

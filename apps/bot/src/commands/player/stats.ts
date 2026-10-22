@@ -1,11 +1,14 @@
 import {
   ActionRowBuilder,
   type AutocompleteInteraction,
+  bold,
   ButtonBuilder,
   ButtonStyle,
   type ChatInputCommandInteraction,
   codeBlock,
   EmbedBuilder,
+  inlineCode,
+  MessageFlags,
   SlashCommandSubcommandBuilder,
 } from "discord.js"
 import { formatSeasonDate, normalizeTag } from "../../lib/util"
@@ -48,7 +51,40 @@ export const stats = {
     const { data: player, error } = await getPlayerHistory(normalizedTag)
 
     if (error) {
-      throw new Error(error.value.message)
+      const embed = new EmbedBuilder()
+        .setColor("Red")
+        .setTitle("What happened here?")
+        .setDescription(
+          `Something went wrong while executing ${inlineCode(`${interaction.commandName} ${interaction.options.getSubcommand()}`)}!`
+        )
+
+      if (error.status === 404) {
+        embed.setDescription(
+          `${inlineCode(normalizedTag)} has no statistics available.`
+        )
+      }
+
+      if (error.status === 422) {
+        embed.setDescription(
+          `${inlineCode(normalizedTag)} is not a valid player tag.`
+        )
+      }
+
+      return await interaction.reply({
+        embeds: [embed],
+        flags: MessageFlags.Ephemeral,
+      })
+    }
+
+    if (player.seasons.length === 0) {
+      const embed = new EmbedBuilder()
+        .setColor("Red")
+        .setTitle("What happened here?")
+        .setDescription(`${bold(player.name)} has no seasons available.`)
+      return await interaction.reply({
+        embeds: [embed],
+        flags: MessageFlags.Ephemeral,
+      })
     }
 
     const leftoverSeasons = player.statistics.participations - 12

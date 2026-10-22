@@ -1,6 +1,7 @@
-import { Elysia, t } from "elysia"
-import { normalizeTag } from "../lib/util"
+import { Elysia } from "elysia"
+import { normalizeTag, TAG_REGEX } from "../lib/util"
 import { getPlayerHistory, getPlayers } from "./../services/player"
+import z from "zod"
 
 export const playerRouter = new Elysia({
   prefix: "/players",
@@ -18,17 +19,16 @@ export const playerRouter = new Elysia({
       if (!player) {
         return status(404, {
           code: "NOT_FOUND",
-          message: `There's no data for ${normalizedTag}.`,
+          message: `${normalizedTag} has no statistics available.`,
         })
       }
 
       return player
     },
     {
-      params: t.Object({
-        tag: t.String({
-          pattern: "^#?[0289PYLQGRJCUVpylqgrjcuv]{3,10}$",
-          message: "Tag must be a valid clan tag.",
+      params: z.object({
+        tag: z.string().regex(TAG_REGEX, {
+          message: "This is not a valid player tag.",
         }),
       }),
     }

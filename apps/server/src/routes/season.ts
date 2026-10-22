@@ -1,6 +1,7 @@
-import { Elysia, t } from "elysia"
-import { normalizeTag } from "../lib/util"
+import { Elysia } from "elysia"
+import { TAG_REGEX, normalizeTag } from "../lib/util"
 import { getSeasonPerformance, getSeasons } from "./../services/season"
+import z from "zod"
 
 export const seasonRouter = new Elysia({
   prefix: "/seasons",
@@ -25,14 +26,10 @@ export const seasonRouter = new Elysia({
       return season
     },
     {
-      params: t.Object({
-        date: t.String({
-          pattern: "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$",
-          message: "Date must be in the YYYY-MM-DD format.",
-        }),
-        tag: t.String({
-          pattern: "^#?[0289PYLQGRJCUVpylqgrjcuv]{3,10}$",
-          message: "Tag must be a valid clan tag.",
+      params: z.object({
+        date: z.iso.date("This is not a valid season date."),
+        tag: z.string().regex(TAG_REGEX, {
+          message: "This is not a valid clan tag.",
         }),
       }),
     }

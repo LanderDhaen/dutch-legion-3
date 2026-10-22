@@ -2,6 +2,8 @@ import {
   type ChatInputCommandInteraction,
   codeBlock,
   EmbedBuilder,
+  inlineCode,
+  MessageFlags,
   SlashCommandSubcommandBuilder,
 } from "discord.js"
 import { getMemberHistory } from "../../api/member"
@@ -19,10 +21,52 @@ export const stats = {
   async execute(interaction: ChatInputCommandInteraction) {
     const discordMember = interaction.options.getUser("member", true)
 
+    if (discordMember.bot) {
+      const embed = new EmbedBuilder()
+        .setColor("Red")
+        .setTitle("What happened here?")
+        .setDescription(
+          `${discordMember} can't have statistics since it's a Discord bot.`
+        )
+      return await interaction.reply({
+        embeds: [embed],
+        flags: MessageFlags.Ephemeral,
+      })
+    }
+
     const { data: member, error } = await getMemberHistory(discordMember.id)
 
     if (error) {
-      throw new Error(error.value.message)
+      const embed = new EmbedBuilder()
+        .setColor("Red")
+        .setTitle("What happened here?")
+        .setDescription(
+          `Something went wrong while executing ${inlineCode(`${interaction.commandName} ${interaction.options.getSubcommand()}`)}!`
+        )
+
+      if (error.status === 404) {
+        embed.setDescription(`${discordMember} has no statistics available.`)
+      }
+
+      if (error.status === 422) {
+        embed.setDescription(`${discordMember.id} is not a valid member ID.`)
+      }
+
+      return await interaction.reply({
+        embeds: [embed],
+        flags: MessageFlags.Ephemeral,
+      })
+    }
+
+    if (member.players.length > 0) {
+      const embed = new EmbedBuilder()
+        .setColor("Red")
+        .setTitle("What happened here?")
+        .setDescription(`${discordMember} has no linked accounts.`)
+      return await interaction.reply({
+        embeds: [embed],
+        flags: MessageFlags.Ephemeral,
+      })
     }
 
     const embed = new EmbedBuilder()
