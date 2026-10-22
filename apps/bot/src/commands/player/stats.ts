@@ -137,7 +137,7 @@ export const stats = {
         }
       )
 
-    const url = `${WEBSITE_URL}/players/${normalizedTag}/history`
+    const url = `${WEBSITE_URL}/players/${normalizedTag}`
 
     const button = new ButtonBuilder()
       .setLabel("Website")

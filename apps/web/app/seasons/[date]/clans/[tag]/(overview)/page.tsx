@@ -43,10 +43,7 @@ export default async function Page({
     <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
       <Card className="shadow-md md:col-span-3">
         <CardHeader>
-          <CardDescription className="flex items-center justify-between">
-            <span>Performance</span>
-            <span>Season</span>
-          </CardDescription>
+          <CardDescription>Statistics</CardDescription>
           <CardTitle className="flex items-center justify-between font-bold">
             <span>{season.clan.name}</span>
             <span>{formatSeasonDate(season.date)}</span>

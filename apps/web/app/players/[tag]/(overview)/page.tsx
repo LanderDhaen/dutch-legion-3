@@ -39,14 +39,8 @@ export default async function Page({
     <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
       <Card className="shadow-md md:col-span-3">
         <CardHeader>
-          <CardDescription className="flex items-center justify-between">
-            <span>History</span>
-            <span>Tag</span>
-          </CardDescription>
-          <CardTitle className="flex items-center justify-between font-bold">
-            <span>{player.name}</span>
-            <span>{player.tag}</span>
-          </CardTitle>
+          <CardDescription>Statistics</CardDescription>
+          <CardTitle className="font-bold">{player.name}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-hidden rounded-md border">
