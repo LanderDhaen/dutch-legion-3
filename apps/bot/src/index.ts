@@ -6,6 +6,8 @@ import {
   EmbedBuilder,
   Events,
   GatewayIntentBits,
+  inlineCode,
+  MessageFlags,
   type SlashCommandBuilder,
   type SlashCommandOptionsOnlyBuilder,
   type SlashCommandSubcommandsOnlyBuilder,
@@ -13,14 +15,17 @@ import {
 import { member } from "./commands/member"
 import { player } from "./commands/player"
 import { season } from "./commands/season"
+import { getCommandName } from "./lib/util"
 
 interface Command {
   data:
     | SlashCommandBuilder
     | SlashCommandOptionsOnlyBuilder
     | SlashCommandSubcommandsOnlyBuilder
-  autocomplete?: (interaction: AutocompleteInteraction) => Promise<void>
-  execute: (interaction: ChatInputCommandInteraction) => Promise<void>
+  autocomplete?: (
+    interaction: AutocompleteInteraction<"cached">
+  ) => Promise<void>
+  execute: (interaction: ChatInputCommandInteraction<"cached">) => Promise<void>
 }
 
 export class BotClient extends Client {
@@ -43,9 +48,34 @@ client.commands.set(season.data.name, season)
 
 client.on(Events.InteractionCreate, async (interaction) => {
   if (interaction.isChatInputCommand()) {
+    if (!interaction.inCachedGuild()) {
+      const embed = new EmbedBuilder()
+        .setColor("Red")
+        .setTitle("What happened here?")
+        .setDescription(
+          `${interaction.client.user.username} can only be used inside a Discord server.`
+        )
+
+      return await interaction.reply({
+        embeds: [embed],
+        flags: MessageFlags.Ephemeral,
+      })
+    }
+
     const command = client.commands.get(interaction.commandName)
 
-    if (!command) return
+    if (!command) {
+      const embed = new EmbedBuilder()
+        .setColor("Red")
+        .setTitle("What happened here?")
+        .setDescription(
+          `${interaction.client.user.username} does not have a command named ${inlineCode(getCommandName(interaction))}.`
+        )
+      return await interaction.reply({
+        embeds: [embed],
+        flags: MessageFlags.Ephemeral,
+      })
+    }
 
     try {
       await command.execute(interaction)
@@ -55,21 +85,27 @@ client.on(Events.InteractionCreate, async (interaction) => {
       const embed = new EmbedBuilder()
         .setTitle("What happened here?")
         .setDescription(
-          error instanceof Error && error.message
-            ? error.message
-            : `Something went wrong while executing \`${interaction.commandName}\`!`
+          `Something went wrong while executing ${inlineCode(getCommandName(interaction))}!`
         )
         .setColor("Red")
 
       if (interaction.replied || interaction.deferred) {
-        await interaction.followUp({ embeds: [embed], ephemeral: true })
+        await interaction.followUp({
+          embeds: [embed],
+          flags: MessageFlags.Ephemeral,
+        })
       } else {
-        await interaction.reply({ embeds: [embed], ephemeral: true })
+        await interaction.reply({
+          embeds: [embed],
+          flags: MessageFlags.Ephemeral,
+        })
       }
     }
   }
 
   if (interaction.isAutocomplete()) {
+    if (!interaction.inCachedGuild()) return
+
     const command = client.commands.get(interaction.commandName)
 
     if (!command || !command.autocomplete) return

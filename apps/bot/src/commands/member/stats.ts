@@ -7,6 +7,7 @@ import {
   SlashCommandSubcommandBuilder,
 } from "discord.js"
 import { getMemberHistory } from "../../api/member"
+import { getCommandName } from "../../lib/util"
 
 export const stats = {
   data: new SlashCommandSubcommandBuilder()
@@ -18,10 +19,21 @@ export const stats = {
         .setDescription("The member to display the statistics for")
         .setRequired(true)
     ),
-  async execute(interaction: ChatInputCommandInteraction) {
-    const discordMember = interaction.options.getUser("member", true)
+  async execute(interaction: ChatInputCommandInteraction<"cached">) {
+    const discordMember = interaction.options.getMember("member")
 
-    if (discordMember.bot) {
+    if (!discordMember) {
+      const embed = new EmbedBuilder()
+        .setColor("Red")
+        .setTitle("What happened here?")
+        .setDescription("This user is no longer a member of this server.")
+      return await interaction.reply({
+        embeds: [embed],
+        flags: MessageFlags.Ephemeral,
+      })
+    }
+
+    if (discordMember.user.bot) {
       const embed = new EmbedBuilder()
         .setColor("Red")
         .setTitle("What happened here?")
@@ -41,7 +53,7 @@ export const stats = {
         .setColor("Red")
         .setTitle("What happened here?")
         .setDescription(
-          `Something went wrong while executing ${inlineCode(`${interaction.commandName} ${interaction.options.getSubcommand()}`)}!`
+          `Something went wrong while executing ${inlineCode(getCommandName(interaction))}!`
         )
 
       if (error.status === 404) {
@@ -58,7 +70,7 @@ export const stats = {
       })
     }
 
-    if (member.players.length > 0) {
+    if (member.players.length === 0) {
       const embed = new EmbedBuilder()
         .setColor("Red")
         .setTitle("What happened here?")

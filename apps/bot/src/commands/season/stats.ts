@@ -13,7 +13,7 @@ import {
 } from "discord.js"
 import { getClans } from "../../api/clan"
 import { getSeason, getSeasonOptions } from "../../api/season"
-import { formatSeasonDate, normalizeTag } from "../../lib/util"
+import { formatSeasonDate, getCommandName, normalizeTag } from "../../lib/util"
 
 const WEBSITE_URL = process.env.WEBSITE_URL || "http://localhost:3000"
 
@@ -36,7 +36,7 @@ export const stats = {
         .setAutocomplete(true)
     ),
 
-  async autocomplete(interaction: AutocompleteInteraction) {
+  async autocomplete(interaction: AutocompleteInteraction<"cached">) {
     const focusedOption = interaction.options.getFocused(true)
 
     if (focusedOption.name === "season") {
@@ -60,7 +60,7 @@ export const stats = {
     }
   },
 
-  async execute(interaction: ChatInputCommandInteraction) {
+  async execute(interaction: ChatInputCommandInteraction<"cached">) {
     const date = interaction.options.getString("season", true)
     const tag = interaction.options.getString("clan", true)
 
@@ -71,7 +71,7 @@ export const stats = {
         .setColor("Red")
         .setTitle("What happened here?")
         .setDescription(
-          `Something went wrong while executing ${inlineCode(`${interaction.commandName} ${interaction.options.getSubcommand()}`)}!`
+          `Something went wrong while executing ${inlineCode(getCommandName(interaction))}!`
         )
 
       if (error.status === 404) {
@@ -115,8 +115,12 @@ export const stats = {
 
     const embed = new EmbedBuilder()
       .setColor("Green")
-      .setTitle(`CWL Performance  •  ${formatSeasonDate(season.date)}`)
+      .setTitle(`CWL Statistics`)
       .addFields(
+        {
+          name: "Season",
+          value: formatSeasonDate(season.date),
+        },
         {
           name: "Clan",
           value: season.clan.name,

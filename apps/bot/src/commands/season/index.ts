@@ -10,7 +10,7 @@ export const season = {
     .setName("season")
     .setDescription("Manage everything related to seasons")
     .addSubcommand(stats.data),
-  async autocomplete(interaction: AutocompleteInteraction) {
+  async autocomplete(interaction: AutocompleteInteraction<"cached">) {
     const subcommand = interaction.options.getSubcommand()
 
     switch (subcommand) {
@@ -18,7 +18,7 @@ export const season = {
         await stats.autocomplete(interaction)
     }
   },
-  async execute(interaction: ChatInputCommandInteraction) {
+  async execute(interaction: ChatInputCommandInteraction<"cached">) {
     const subcommand = interaction.options.getSubcommand()
 
     switch (subcommand) {

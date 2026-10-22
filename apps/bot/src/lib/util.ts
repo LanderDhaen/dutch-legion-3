@@ -1,3 +1,5 @@
+import { ChatInputCommandInteraction } from "discord.js"
+
 export const normalizeTag = (tag: string) => {
   return tag.toUpperCase().replaceAll("#", "%23")
 }
@@ -18,3 +20,14 @@ export const formatSeasonDate = (dateString: string) => {
     year: "numeric",
   })
 }
+
+export const getCommandName = (
+  interaction: ChatInputCommandInteraction<"cached">
+) =>
+  `/${[
+    interaction.commandName,
+    interaction.options.getSubcommandGroup(false),
+    interaction.options.getSubcommand(false),
+  ]
+    .filter(Boolean)
+    .join(" ")}`

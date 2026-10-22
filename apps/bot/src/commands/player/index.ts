@@ -10,7 +10,7 @@ export const player = {
     .setName("player")
     .setDescription("Manage everything related to players")
     .addSubcommand(stats.data),
-  async autocomplete(interaction: AutocompleteInteraction) {
+  async autocomplete(interaction: AutocompleteInteraction<"cached">) {
     const subcommand = interaction.options.getSubcommand()
 
     switch (subcommand) {
@@ -19,7 +19,7 @@ export const player = {
     }
   },
 
-  async execute(interaction: ChatInputCommandInteraction) {
+  async execute(interaction: ChatInputCommandInteraction<"cached">) {
     const subcommand = interaction.options.getSubcommand()
 
     switch (subcommand) {

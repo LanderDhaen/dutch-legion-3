@@ -11,7 +11,7 @@ import {
   MessageFlags,
   SlashCommandSubcommandBuilder,
 } from "discord.js"
-import { formatSeasonDate, normalizeTag } from "../../lib/util"
+import { formatSeasonDate, getCommandName, normalizeTag } from "../../lib/util"
 import { getPlayerHistory, getPlayers } from "../../api/player"
 
 const WEBSITE_URL = process.env.WEBSITE_URL || "http://localhost:3000"
@@ -27,7 +27,7 @@ export const stats = {
         .setRequired(true)
         .setAutocomplete(true)
     ),
-  async autocomplete(interaction: AutocompleteInteraction) {
+  async autocomplete(interaction: AutocompleteInteraction<"cached">) {
     const focusedOption = interaction.options.getFocused(true)
 
     if (focusedOption.name === "player") {
@@ -44,7 +44,7 @@ export const stats = {
       )
     }
   },
-  async execute(interaction: ChatInputCommandInteraction) {
+  async execute(interaction: ChatInputCommandInteraction<"cached">) {
     const tag = interaction.options.getString("player", true)
     const normalizedTag = normalizeTag(tag)
 
@@ -55,7 +55,7 @@ export const stats = {
         .setColor("Red")
         .setTitle("What happened here?")
         .setDescription(
-          `Something went wrong while executing ${inlineCode(`${interaction.commandName} ${interaction.options.getSubcommand()}`)}!`
+          `Something went wrong while executing ${getCommandName(interaction)}!`
         )
 
       if (error.status === 404) {
