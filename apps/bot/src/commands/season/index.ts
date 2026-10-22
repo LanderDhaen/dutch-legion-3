@@ -3,27 +3,27 @@ import {
   ChatInputCommandInteraction,
   SlashCommandBuilder,
 } from "discord.js"
-import { performance } from "./performance"
+import { stats } from "./stats"
 
-export const cwl = {
+export const season = {
   data: new SlashCommandBuilder()
-    .setName("cwl")
-    .setDescription("Manage everything related to CWL")
-    .addSubcommand(performance.data),
+    .setName("season")
+    .setDescription("Manage everything related to seasons")
+    .addSubcommand(stats.data),
   async autocomplete(interaction: AutocompleteInteraction) {
     const subcommand = interaction.options.getSubcommand()
 
     switch (subcommand) {
-      case "performance":
-        await performance.autocomplete(interaction)
+      case "stats":
+        await stats.autocomplete(interaction)
     }
   },
   async execute(interaction: ChatInputCommandInteraction) {
     const subcommand = interaction.options.getSubcommand()
 
     switch (subcommand) {
-      case "performance":
-        await performance.execute(interaction)
+      case "stats":
+        await stats.execute(interaction)
     }
   },
 }

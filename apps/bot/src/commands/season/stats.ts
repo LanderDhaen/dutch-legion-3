@@ -13,21 +13,21 @@ import { formatSeasonDate, normalizeTag } from "../../lib/util"
 
 const WEBSITE_URL = process.env.WEBSITE_URL || "http://localhost:3000"
 
-export const performance = {
+export const stats = {
   data: new SlashCommandSubcommandBuilder()
-    .setName("performance")
-    .setDescription("Display the performance for a CWL season")
+    .setName("stats")
+    .setDescription("Display the statistics for a CWL season")
     .addStringOption((option) =>
       option
         .setName("season")
-        .setDescription("The season to display the performance for")
+        .setDescription("The season to display the statistics for")
         .setRequired(true)
         .setAutocomplete(true)
     )
     .addStringOption((option) =>
       option
         .setName("clan")
-        .setDescription("The clan to display the performance for")
+        .setDescription("The clan to display the statistics for")
         .setRequired(true)
         .setAutocomplete(true)
     ),

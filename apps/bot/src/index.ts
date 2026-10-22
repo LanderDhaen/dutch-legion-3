@@ -10,9 +10,9 @@ import {
   type SlashCommandOptionsOnlyBuilder,
   type SlashCommandSubcommandsOnlyBuilder,
 } from "discord.js"
-import { cwl } from "./commands/cwl"
 import { member } from "./commands/member"
 import { player } from "./commands/player"
+import { season } from "./commands/season"
 
 interface Command {
   data:
@@ -37,9 +37,9 @@ client.once(Events.ClientReady, (readyClient) => {
   console.log(`Ready! Logged in as ${readyClient.user.tag}`)
 })
 
-client.commands.set(cwl.data.name, cwl)
 client.commands.set(member.data.name, member)
 client.commands.set(player.data.name, player)
+client.commands.set(season.data.name, season)
 
 client.on(Events.InteractionCreate, async (interaction) => {
   if (interaction.isChatInputCommand()) {
