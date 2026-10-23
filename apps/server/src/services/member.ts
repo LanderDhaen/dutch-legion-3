@@ -41,6 +41,7 @@ export const getMemberHistory = async (id: string) => {
           .select((eb) => [
             "player.name",
             "player.tag",
+            "player.townhall",
             jsonBuildObject({
               participations: eb.ref(
                 "calculatedOverallStatistics.participations"
@@ -52,6 +53,8 @@ export const getMemberHistory = async (id: string) => {
               missed: eb.ref("calculatedOverallStatistics.missed"),
             }).as("statistics"),
           ])
+          .orderBy("player.townhall", "desc")
+          .orderBy("calculatedOverallStatistics.average", "desc")
           .orderBy("calculatedOverallStatistics.participations", "desc")
           .whereRef("player.memberId", "=", "member.id")
       ).as("players"),

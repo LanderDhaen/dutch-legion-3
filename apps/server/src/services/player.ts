@@ -32,6 +32,7 @@ export const getPlayerHistory = async (tag: string) => {
     .select((eb) => [
       "player.name",
       "player.tag",
+      "player.townhall",
       jsonBuildObject({
         participations: eb.ref("calculatedOverallStatistics.participations"),
         wars: eb.ref("calculatedOverallStatistics.wars"),

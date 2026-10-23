@@ -107,6 +107,10 @@ export const stats = {
           value: player.tag,
         },
         {
+          name: "Townhall",
+          value: player.townhall.toString(),
+        },
+        {
           name: "Participations",
           value: player.statistics.participations.toString(),
         },

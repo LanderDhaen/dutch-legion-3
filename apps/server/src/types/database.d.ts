@@ -17,6 +17,7 @@ interface Member {
 interface Player {
   tag: string
   name: string
+  townhall: number
   memberId: string | null
 }
 

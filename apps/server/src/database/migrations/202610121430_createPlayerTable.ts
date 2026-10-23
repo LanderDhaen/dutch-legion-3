@@ -13,6 +13,7 @@ export const up = async (db: Kysely<any>) => {
     )
     .addColumn("isActive", "boolean", (c) => c.notNull().defaultTo(true))
     .addColumn("name", "text", (c) => c.notNull())
+    .addColumn("townhall", "integer", (c) => c.notNull())
     .addColumn("memberId", "text", (c) =>
       c.references("member.id").onDelete("set null")
     )

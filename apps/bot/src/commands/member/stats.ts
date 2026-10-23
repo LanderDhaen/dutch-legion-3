@@ -102,10 +102,10 @@ export const stats = {
           value: codeBlock(
             "text",
             [
-              ["Part.".padStart(7), "Avg.".padStart(4), "Name"].join(" | "),
+              ["TH.".padStart(5), "Avg.".padStart(4), "Name"].join(" | "),
               ...member.players.map((player) =>
                 [
-                  String(player.statistics.participations).padStart(7),
+                  String(player.townhall).padStart(5),
                   formatAverage(player.statistics.average).padStart(4),
                   player.name,
                 ].join(" | ")
