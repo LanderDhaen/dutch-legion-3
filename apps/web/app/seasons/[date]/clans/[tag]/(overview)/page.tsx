@@ -41,12 +41,56 @@ export default async function Page({
 
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+      <div className="grid content-start gap-4">
+        <Card className="shadow-md">
+          <CardHeader>
+            <CardDescription>Season</CardDescription>
+            <CardTitle className="font-bold">
+              {formatSeasonDate(season.date)}
+            </CardTitle>
+          </CardHeader>
+        </Card>
+        <Card className="shadow-md">
+          <CardHeader>
+            <CardDescription className="flex items-center justify-between">
+              <span>Clan</span>
+              <span>Tag</span>
+            </CardDescription>
+            <CardTitle className="flex items-center justify-between font-bold">
+              <span>{season.clan.name}</span>
+              <span>{season.clan.tag}</span>
+            </CardTitle>
+          </CardHeader>
+        </Card>
+        <Card className="shadow-md">
+          <CardHeader>
+            <CardDescription className="flex items-center justify-between">
+              <span>League</span>
+              <span>Modifier</span>
+            </CardDescription>
+            <CardTitle className="flex items-center justify-between font-bold">
+              <span>{season.league.name}</span>
+              {season.league.modifier ? (
+                <span>{season.league.modifier.name}</span>
+              ) : (
+                <span className="text-muted-foreground italic">
+                  No Modifiers
+                </span>
+              )}
+            </CardTitle>
+          </CardHeader>
+          {season.league.modifier && (
+            <CardContent className="grid grid-cols-1 gap-4">
+              <ModifierTable modifier={season.league.modifier} />
+            </CardContent>
+          )}
+        </Card>
+      </div>
       <Card className="shadow-md md:col-span-3">
         <CardHeader>
           <CardDescription>Statistics</CardDescription>
-          <CardTitle className="flex items-center justify-between font-bold">
-            <span>{formatSeasonDate(season.date)}</span>
-            <span>{season.clan.name}</span>
+          <CardTitle className="font-bold">
+            {formatSeasonDate(season.date)}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -54,7 +98,7 @@ export default async function Page({
             <Table>
               <TableHeader className="bg-muted">
                 <TableRow>
-                  <TableHead className="w-48 font-bold">Account</TableHead>
+                  <TableHead className="w-48 font-bold">Name</TableHead>
                   <TableHead className="w-32 text-right font-bold">
                     Townhall
                   </TableHead>
@@ -107,31 +151,6 @@ export default async function Page({
           </div>
         </CardContent>
       </Card>
-      <div>
-        <Card className="shadow-md">
-          <CardHeader>
-            <CardDescription className="flex items-center justify-between">
-              <span>League</span>
-              <span>Modifier</span>
-            </CardDescription>
-            <CardTitle className="flex items-center justify-between font-bold">
-              <span>{season.league.name}</span>
-              {season.league.modifier ? (
-                <span>{season.league.modifier.name}</span>
-              ) : (
-                <span className="text-muted-foreground italic">
-                  No Modifiers
-                </span>
-              )}
-            </CardTitle>
-          </CardHeader>
-          {season.league.modifier && (
-            <CardContent className="grid grid-cols-1 gap-4">
-              <ModifierTable modifier={season.league.modifier} />
-            </CardContent>
-          )}
-        </Card>
-      </div>
     </div>
   )
 }

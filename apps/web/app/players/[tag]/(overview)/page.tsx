@@ -39,6 +39,35 @@ export default async function Page({
 
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+      <div className="grid content-start gap-4">
+        <Card className="shadow-md">
+          <CardHeader>
+            <CardDescription className="flex items-center justify-between">
+              <span>Account</span>
+              <span>Tag</span>
+            </CardDescription>
+            <CardTitle className="flex items-center justify-between font-bold tabular-nums">
+              <span>{player.name}</span>
+              <span>{player.tag}</span>
+            </CardTitle>
+          </CardHeader>
+        </Card>
+        <Card className="shadow-md">
+          <CardHeader>
+            <CardDescription className="flex items-center justify-between">
+              <span>Participations</span>
+              <span>Average</span>
+            </CardDescription>
+            <CardTitle className="flex items-center justify-between font-bold tabular-nums">
+              {player.statistics.participations}
+              <AverageStarsBadge average={player.statistics.average} />
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <StatisticsTable statistics={player.statistics} />
+          </CardContent>
+        </Card>
+      </div>
       <Card className="shadow-md md:col-span-3">
         <CardHeader>
           <CardDescription>Statistics</CardDescription>
@@ -109,23 +138,6 @@ export default async function Page({
           </div>
         </CardContent>
       </Card>
-      <div>
-        <Card className="shadow-md">
-          <CardHeader>
-            <CardDescription className="flex items-center justify-between">
-              <span>Participations</span>
-              <span>Average</span>
-            </CardDescription>
-            <CardTitle className="flex items-center justify-between font-bold tabular-nums">
-              {player.statistics.participations}
-              <AverageStarsBadge average={player.statistics.average} />
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <StatisticsTable statistics={player.statistics} />
-          </CardContent>
-        </Card>
-      </div>
     </div>
   )
 }

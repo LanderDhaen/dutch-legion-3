@@ -1,4 +1,7 @@
 import {
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
   type ChatInputCommandInteraction,
   codeBlock,
   EmbedBuilder,
@@ -8,6 +11,8 @@ import {
 } from "discord.js"
 import { getMemberHistory } from "../../api/member"
 import { formatAverage, getCommandName } from "../../lib/util"
+
+const WEBSITE_URL = process.env.WEBSITE_URL || "http://localhost:3000"
 
 export const stats = {
   data: new SlashCommandSubcommandBuilder()
@@ -114,9 +119,18 @@ export const stats = {
           ),
         }
       )
+    const url = `${WEBSITE_URL}/members/${discordMember.id}`
+
+    const button = new ButtonBuilder()
+      .setLabel("Website")
+      .setStyle(ButtonStyle.Link)
+      .setURL(url)
+
+    const row = new ActionRowBuilder<ButtonBuilder>().addComponents(button)
 
     await interaction.reply({
       embeds: [embed],
+      components: [row],
     })
   },
 }
