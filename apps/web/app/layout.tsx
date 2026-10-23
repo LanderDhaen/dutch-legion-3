@@ -27,7 +27,7 @@ export default function RootLayout({
         inter.variable
       )}
     >
-      <body>
+      <body className="scrollbar-gutter-stable bg-background p-4">
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

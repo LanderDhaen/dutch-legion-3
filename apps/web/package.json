@@ -27,8 +27,6 @@
     "@types/react-dom": "^19",
     "@workspace/eslint-config": "workspace:^",
     "@workspace/typescript-config": "workspace:*",
-    "elysia": "1.4.30",
-    "eslint": "^9",
-    "typescript": "^5"
+    "elysia": "1.4.30"
   }
 }
