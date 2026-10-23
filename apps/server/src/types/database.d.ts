@@ -1,6 +1,7 @@
 export interface Database {
   member: Member
   player: Player
+  link: Link
   modifier: Modifier
   version: Version
   league: League
@@ -18,7 +19,12 @@ interface Player {
   tag: string
   name: string
   townhall: number
-  memberId: string | null
+}
+
+interface Link {
+  isPrimary: boolean
+  memberId: string
+  playerTag: string
 }
 
 interface Modifier {

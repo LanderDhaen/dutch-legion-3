@@ -38,10 +38,12 @@ export const getMemberHistory = async (id: string) => {
             "player.tag",
             "calculatedOverallStatistics.playerTag"
           )
+          .innerJoin("link", "link.playerTag", "player.tag")
           .select((eb) => [
             "player.name",
             "player.tag",
             "player.townhall",
+            "link.isPrimary",
             jsonBuildObject({
               participations: eb.ref(
                 "calculatedOverallStatistics.participations"
@@ -56,7 +58,7 @@ export const getMemberHistory = async (id: string) => {
           .orderBy("player.townhall", "desc")
           .orderBy("calculatedOverallStatistics.average", "desc")
           .orderBy("calculatedOverallStatistics.participations", "desc")
-          .whereRef("player.memberId", "=", "member.id")
+          .whereRef("link.memberId", "=", "member.id")
       ).as("players"),
     ])
     .where("member.id", "=", id)

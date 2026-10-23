@@ -86,6 +86,8 @@ export const stats = {
       })
     }
 
+    const primaryPlayer = member.players.find((player) => player.isPrimary)
+
     const embed = new EmbedBuilder()
       .setColor("Green")
       .setTitle("CWL Statistics")
@@ -93,6 +95,12 @@ export const stats = {
         {
           name: "Member",
           value: discordMember.toString(),
+        },
+        {
+          name: "Primary",
+          value: primaryPlayer
+            ? primaryPlayer.name
+            : "*No primary account set*",
         },
         {
           name: "Participations",

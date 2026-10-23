@@ -69,8 +69,9 @@ export const withMemberOverallCalculatedStatistics = () => {
   return eb
     .selectFrom("statistic")
     .innerJoin("player", "player.tag", "statistic.playerTag")
+    .innerJoin("link", "link.playerTag", "player.tag")
     .select((eb) => [
-      "player.memberId",
+      "link.memberId",
       eb.fn.count<number>("statistic.id").as("participations"),
       eb.fn.coalesce(eb.fn.sum<number>("statistic.wars"), eb.val(0)).as("wars"),
       eb.fn
@@ -101,5 +102,5 @@ export const withMemberOverallCalculatedStatistics = () => {
         )
         .as("missed"),
     ])
-    .groupBy("player.memberId")
+    .groupBy("link.memberId")
 }
