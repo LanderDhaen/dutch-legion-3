@@ -22,7 +22,7 @@ export const up = async (db: Kysely<any>) => {
       c.notNull().references("member.id").onDelete("restrict")
     )
     .addColumn("playerTag", "text", (c) =>
-      c.notNull().references("player.tag").onDelete("restrict")
+      c.notNull().unique().references("player.tag").onDelete("restrict")
     )
 
     .execute()
