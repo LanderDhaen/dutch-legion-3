@@ -20,6 +20,8 @@ export const getMemberHistory = async (id: string) => {
     )
     .select((eb) => [
       "member.id",
+      "member.username",
+      "member.globalName",
       jsonBuildObject({
         participations: eb.ref(
           "memberOverallCalculatedStatistics.participations"

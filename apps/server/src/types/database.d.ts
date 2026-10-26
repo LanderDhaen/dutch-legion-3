@@ -13,6 +13,8 @@ export interface Database {
 
 interface Member {
   id: string
+  username: string
+  globalName: string | null
 }
 
 interface Player {

@@ -36,15 +36,6 @@ export default async function Page({
     notFound()
   }
 
-  const firstPlayer = member.players[0]
-
-  if (!firstPlayer) {
-    notFound()
-  }
-
-  const primaryPlayer =
-    member.players.find((player) => player.isPrimary) || firstPlayer
-
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
       <div className="grid content-start gap-4">
@@ -55,7 +46,7 @@ export default async function Page({
               <span>Accounts</span>
             </CardDescription>
             <CardTitle className="flex items-center justify-between font-bold tabular-nums">
-              <span>{primaryPlayer.name}</span>
+              <span>{member.globalName || member.username}</span>
               <span>{member.players.length}</span>
             </CardTitle>
           </CardHeader>
@@ -79,7 +70,9 @@ export default async function Page({
       <Card className="shadow-md md:col-span-3">
         <CardHeader>
           <CardDescription>Statistics</CardDescription>
-          <CardTitle className="font-bold">{primaryPlayer.name}</CardTitle>
+          <CardTitle className="font-bold">
+            {member.globalName || member.username}
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-hidden rounded-md border">
