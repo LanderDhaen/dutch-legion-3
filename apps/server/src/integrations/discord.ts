@@ -14,10 +14,22 @@ export const getDiscordUser = async (memberId: string) => {
 
     const parsedUser = userSchema.parse(rawUser)
 
-    return parsedUser
+    return {
+      data: parsedUser,
+      error: null,
+    }
   } catch (error) {
     console.error(error)
-    return null
+
+    return {
+      data: null,
+      error:
+        error instanceof Error
+          ? error
+          : new Error(
+              "An unknown error occured while fetching the Discord user."
+            ),
+    }
   }
 }
 

@@ -4,6 +4,7 @@ import { createLink } from "../services/link"
 import { getClashOfClansPlayer } from "../integrations/clash-of-clans"
 import { DISCORD_ID_REGEX, TAG_REGEX } from "../lib/util"
 import { getDiscordUser } from "../integrations/discord"
+import { isAxiosError } from "axios"
 
 const API_KEY = process.env.API_KEY
 
@@ -28,21 +29,96 @@ export const linkRouter = new Elysia({
   .post(
     "/",
     async ({ body, status }) => {
-      const player = await getClashOfClansPlayer(body.playerTag)
+      const { data: player, error: playerError } = await getClashOfClansPlayer(
+        body.playerTag
+      )
 
-      if (!player) {
-        return status(502, {
-          code: "BAD_GATEWAY",
-          message: `The Clash of Clans API has encountered an unexpected error.`,
+      if (playerError) {
+        if (playerError instanceof z.ZodError) {
+          return status(502, {
+            code: "BAD_GATEWAY",
+            message: `The Clash of Clans API has returned an invalid response.`,
+          })
+        }
+
+        if (isAxiosError(playerError) && playerError.response) {
+          switch (playerError.response.status) {
+            case 400:
+              return status(400, {
+                code: "BAD_REQUEST",
+                message: `The Clash of Clans API has received a malformed request.`,
+              })
+
+            case 404:
+              return status(404, {
+                code: "NOT_FOUND",
+                message: `The Clash of Clans API hasn't found a player with tag ${body.playerTag}.`,
+              })
+
+            case 429:
+              return status(503, {
+                code: "SERVICE_UNAVAILABLE",
+                message: "The Clash of Clans API has rate limited the request.",
+              })
+            default:
+              return status(502, {
+                code: "BAD_GATEWAY",
+                message:
+                  "The Clash of Clans API has encountered an unexpected error.",
+              })
+          }
+        }
+
+        return status(500, {
+          code: "INTERNAL_SERVER_ERROR",
+          message:
+            "The DL ClashManager API has encountered an unexpected error.",
         })
       }
 
-      const user = await getDiscordUser(body.memberId)
+      const { data: user, error: userError } =
+        await getDiscordUser("body.memberId")
 
-      if (!user) {
-        return status(502, {
-          code: "BAD_GATEWAY",
-          message: `The Discord API has encountered an unexpected error.`,
+      if (userError) {
+        if (userError instanceof z.ZodError) {
+          return status(502, {
+            code: "BAD_GATEWAY",
+            message: `The Discord API has returned an invalid response.`,
+          })
+        }
+
+        if (isAxiosError(userError) && userError.response) {
+          switch (userError.response.status) {
+            case 400:
+              return status(400, {
+                code: "BAD_REQUEST",
+                message: `The Discord API has received a malformed request.`,
+              })
+
+            case 404:
+              return status(404, {
+                code: "NOT_FOUND",
+                message: `The Discord API hasn't found a user with ID ${body.memberId}.`,
+              })
+
+            case 429:
+              return status(503, {
+                code: "SERVICE_UNAVAILABLE",
+                message: "The Discord API has rate limited the request.",
+              })
+
+            default:
+              return status(502, {
+                code: "BAD_GATEWAY",
+                message: "The Discord API has encountered an unexpected error.",
+              })
+          }
+        }
+
+        return status(500, {
+          code: "INTERNAL_SERVER_ERROR",
+          message:
+            "The DL ClashManager API has encountered an unexpected error.",
         })
       }
 

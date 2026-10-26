@@ -14,11 +14,22 @@ export const getClashOfClansPlayer = async (playerTag: string) => {
 
     const parsedPlayer = playerSchema.parse(rawPlayer)
 
-    return parsedPlayer
+    return {
+      data: parsedPlayer,
+      error: null,
+    }
   } catch (error) {
     console.error(error)
 
-    return null
+    return {
+      data: null,
+      error:
+        error instanceof Error
+          ? error
+          : new Error(
+              "An unknown error occured while fetching the Clash of Clans player."
+            ),
+    }
   }
 }
 
