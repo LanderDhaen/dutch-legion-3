@@ -18,6 +18,8 @@ import {
 import AverageStarsBadge from "@web/components/average-stars-badge"
 import TownhallBadge from "@web/components/townhall-badge"
 import StatisticsTable from "@web/components/statistics-table"
+import { Badge } from "@workspace/ui/components/badge"
+import { Star } from "lucide-react"
 
 export default async function Page({
   params,
@@ -44,7 +46,7 @@ export default async function Page({
               <span>Accounts</span>
             </CardDescription>
             <CardTitle className="flex items-center justify-between font-bold tabular-nums">
-              <span>{member.players[0]?.name}</span>
+              <span>{member.globalName || member.username}</span>
               <span>{member.players.length}</span>
             </CardTitle>
           </CardHeader>
@@ -68,7 +70,9 @@ export default async function Page({
       <Card className="shadow-md md:col-span-3">
         <CardHeader>
           <CardDescription>Statistics</CardDescription>
-          <CardTitle className="font-bold">{member.players[0]?.name}</CardTitle>
+          <CardTitle className="font-bold">
+            {member.globalName || member.username}
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-hidden rounded-md border">
@@ -102,7 +106,14 @@ export default async function Page({
               <TableBody>
                 {member.players.map((player, index) => (
                   <TableRow key={index}>
-                    <TableCell>{player.name}</TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-2">
+                        {player.name}
+                        {player.isPrimary && (
+                          <Star className="size-3 fill-muted-foreground text-muted-foreground" />
+                        )}
+                      </div>
+                    </TableCell>
                     <TableCell className="text-right">
                       <TownhallBadge townhall={player.townhall} />
                     </TableCell>

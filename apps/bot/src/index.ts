@@ -16,6 +16,7 @@ import { member } from "./commands/member"
 import { player } from "./commands/player"
 import { season } from "./commands/season"
 import { getCommandName } from "./lib/util"
+import { link } from "./commands/link"
 
 interface Command {
   data:
@@ -42,6 +43,7 @@ client.once(Events.ClientReady, (readyClient) => {
   console.log(`Ready! Logged in as ${readyClient.user.tag}`)
 })
 
+client.commands.set(link.data.name, link)
 client.commands.set(member.data.name, member)
 client.commands.set(player.data.name, player)
 client.commands.set(season.data.name, season)

@@ -3,8 +3,8 @@ import { Kysely } from "kysely"
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const up = async (db: Kysely<any>) => {
   await db.schema
-    .createTable("player")
-    .addColumn("tag", "text", (c) => c.primaryKey())
+    .createTable("member")
+    .addColumn("id", "text", (c) => c.primaryKey())
     .addColumn("createdAt", "timestamptz", (c) =>
       c.notNull().defaultTo("now()")
     )
@@ -12,15 +12,12 @@ export const up = async (db: Kysely<any>) => {
       c.notNull().defaultTo("now()")
     )
     .addColumn("isActive", "boolean", (c) => c.notNull().defaultTo(true))
-    .addColumn("name", "text", (c) => c.notNull())
-    .addColumn("townhall", "integer", (c) => c.notNull())
-    .addColumn("memberId", "text", (c) =>
-      c.references("member.id").onDelete("set null")
-    )
+    .addColumn("username", "text", (c) => c.notNull())
+    .addColumn("globalName", "text")
     .execute()
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const down = async (db: Kysely<any>) => {
-  await db.schema.dropTable("player").execute()
+  await db.schema.dropTable("member").execute()
 }

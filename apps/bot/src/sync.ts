@@ -2,6 +2,7 @@ import { REST, Routes } from "discord.js"
 import { member } from "./commands/member"
 import { player } from "./commands/player"
 import { season } from "./commands/season"
+import { link } from "./commands/link"
 
 const TOKEN = process.env.DISCORD_TOKEN
 const CLIENT_ID = process.env.CLIENT_ID
@@ -14,6 +15,7 @@ if (!TOKEN || !CLIENT_ID || !GUILD_ID) {
 const rest = new REST().setToken(TOKEN)
 
 const commands = [
+  link.data.toJSON(),
   member.data.toJSON(),
   player.data.toJSON(),
   season.data.toJSON(),

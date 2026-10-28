@@ -4,6 +4,7 @@ import { clanRouter } from "./routes/clan"
 import { logixlysia } from "logixlysia"
 import { playerRouter } from "./routes/player"
 import { memberRouter } from "./routes/member"
+import { linkRouter } from "./routes/link"
 
 const app = new Elysia()
   .use(
@@ -16,6 +17,7 @@ const app = new Elysia()
     })
   )
   .use(clanRouter)
+  .use(linkRouter)
   .use(memberRouter)
   .use(playerRouter)
   .use(seasonRouter)
