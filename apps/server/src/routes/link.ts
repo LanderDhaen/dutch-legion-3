@@ -29,9 +29,10 @@ export const linkRouter = new Elysia({
   .post(
     "/",
     async ({ body, status }) => {
-      const { data: player, error: playerError } = await getClashOfClansPlayer(
-        body.playerTag
-      )
+      const { isPrimary, memberId, playerTag } = body
+
+      const { data: player, error: playerError } =
+        await getClashOfClansPlayer(playerTag)
 
       if (playerError) {
         if (playerError instanceof z.ZodError) {
@@ -52,7 +53,7 @@ export const linkRouter = new Elysia({
             case 404:
               return status(404, {
                 code: "NOT_FOUND",
-                message: `The Clash of Clans API hasn't found a player with tag ${body.playerTag}.`,
+                message: `The Clash of Clans API hasn't found a player with tag ${playerTag}.`,
               })
 
             case 429:
@@ -76,8 +77,9 @@ export const linkRouter = new Elysia({
         })
       }
 
-      const { data: user, error: userError } =
-        await getDiscordUser("body.memberId")
+      const { data: user, error: userError } = await getDiscordUser(
+        body.memberId
+      )
 
       if (userError) {
         if (userError instanceof z.ZodError) {
@@ -98,7 +100,7 @@ export const linkRouter = new Elysia({
             case 404:
               return status(404, {
                 code: "NOT_FOUND",
-                message: `The Discord API hasn't found a user with ID ${body.memberId}.`,
+                message: `The Discord API hasn't found a user with ID ${memberId}.`,
               })
 
             case 429:
@@ -123,7 +125,7 @@ export const linkRouter = new Elysia({
       }
 
       const link = await createLink({
-        isPrimary: body.isPrimary,
+        isPrimary: isPrimary,
         member: user,
         player: player,
       })
@@ -139,7 +141,7 @@ export const linkRouter = new Elysia({
     },
     {
       body: z.object({
-        isPrimary: z.stringbool(),
+        isPrimary: z.boolean("This must be a boolean value."),
         memberId: z.string().regex(DISCORD_ID_REGEX, {
           error: "This is not a valid member ID.",
         }),
