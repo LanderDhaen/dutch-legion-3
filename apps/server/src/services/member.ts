@@ -1,70 +1,27 @@
-import { jsonArrayFrom, jsonBuildObject } from "kysely/helpers/postgres"
-import { db } from "./../database"
-import {
-  withMemberOverallCalculatedStatistics,
-  withOverallCalculatedStatistics,
-} from "./statistics"
+import { DatabaseService, requireOne } from "@server/database"
+import { Context, Effect, Layer } from "effect"
 
-export const getMemberHistory = async (id: string) => {
-  const player = await db
-    .with("calculatedOverallStatistics", withOverallCalculatedStatistics())
-    .with(
-      "memberOverallCalculatedStatistics",
-      withMemberOverallCalculatedStatistics()
-    )
-    .selectFrom("member")
-    .innerJoin(
-      "memberOverallCalculatedStatistics",
-      "memberOverallCalculatedStatistics.memberId",
-      "member.id"
-    )
-    .select((eb) => [
-      "member.id",
-      "member.username",
-      "member.globalName",
-      jsonBuildObject({
-        participations: eb.ref(
-          "memberOverallCalculatedStatistics.participations"
-        ),
-        wars: eb.ref("memberOverallCalculatedStatistics.wars"),
-        stars: eb.ref("memberOverallCalculatedStatistics.stars"),
-        destruction: eb.ref("memberOverallCalculatedStatistics.destruction"),
-        average: eb.ref("memberOverallCalculatedStatistics.average"),
-        missed: eb.ref("memberOverallCalculatedStatistics.missed"),
-      }).as("statistics"),
-      jsonArrayFrom(
-        eb
-          .selectFrom("calculatedOverallStatistics")
-          .innerJoin(
-            "player",
-            "player.tag",
-            "calculatedOverallStatistics.playerTag"
+export class MemberService extends Context.Service<MemberService>()(
+  "MemberService",
+  {
+    make: Effect.gen(function* () {
+      const db = yield* DatabaseService
+
+      return {
+        getMemberById: Effect.fn("MemberService.getMemberById")(function* (
+          id: string
+        ) {
+          return yield* requireOne(() =>
+            db
+              .selectFrom("member")
+              .select(["member.id", "member.username", "member.globalName"])
+              .where("id", "=", id)
+              .executeTakeFirst()
           )
-          .innerJoin("link", "link.playerTag", "player.tag")
-          .select((eb) => [
-            "player.name",
-            "player.tag",
-            "player.townhall",
-            "link.isPrimary",
-            jsonBuildObject({
-              participations: eb.ref(
-                "calculatedOverallStatistics.participations"
-              ),
-              wars: eb.ref("calculatedOverallStatistics.wars"),
-              stars: eb.ref("calculatedOverallStatistics.stars"),
-              destruction: eb.ref("calculatedOverallStatistics.destruction"),
-              average: eb.ref("calculatedOverallStatistics.average"),
-              missed: eb.ref("calculatedOverallStatistics.missed"),
-            }).as("statistics"),
-          ])
-          .orderBy("player.townhall", "desc")
-          .orderBy("calculatedOverallStatistics.average", "desc")
-          .orderBy("calculatedOverallStatistics.participations", "desc")
-          .whereRef("link.memberId", "=", "member.id")
-      ).as("players"),
-    ])
-    .where("member.id", "=", id)
-    .executeTakeFirst()
-
-  return player
+        }),
+      }
+    }),
+  }
+) {
+  static readonly layer = Layer.effect(this, this.make)
 }

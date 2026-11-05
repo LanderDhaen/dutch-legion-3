@@ -1,29 +1,43 @@
-import { Elysia } from "elysia"
-import { getMemberHistory } from "./../services/member"
-import z from "zod"
-import { DISCORD_ID_REGEX } from "../lib/util"
+import {
+  HttpApi,
+  HttpApiBuilder,
+  HttpApiEndpoint,
+  HttpApiError,
+  HttpApiGroup,
+} from "effect/http-api"
+import { Effect, Schema } from "effect"
+import { MemberService } from "@server/services/member"
 
-export const memberRouter = new Elysia({
-  prefix: "/members",
-}).get(
-  "/:id/statistics",
-  async ({ params: { id }, status }) => {
-    const member = await getMemberHistory(id)
-
-    if (!member) {
-      return status(404, {
-        code: "NOT_FOUND",
-        message: `${id} has no statistics available.`,
-      })
-    }
-
-    return member
-  },
-  {
-    params: z.object({
-      id: z.string().regex(DISCORD_ID_REGEX, {
-        error: "This is not a valid member ID.",
+export const memberApi = HttpApi.make("memberApi").add(
+  HttpApiGroup.make("members").add(
+    HttpApiEndpoint.get("getMemberById", "/members/:id", {
+      params: Schema.Struct({
+        id: Schema.String,
       }),
-    }),
-  }
+      success: Schema.Struct({
+        id: Schema.String,
+        username: Schema.String,
+        globalName: Schema.NullOr(Schema.String),
+      }),
+      error: [HttpApiError.NotFound, HttpApiError.InternalServerError],
+    })
+  )
+)
+
+export const memberHandlers = HttpApiBuilder.group(
+  memberApi,
+  "members",
+  (handlers) =>
+    handlers.handle("getMemberById", ({ params }) =>
+      MemberService.use((service) =>
+        service.getMemberById(params.id).pipe(
+          Effect.tapError(Effect.logError),
+          Effect.catchTags({
+            DatabaseError: () =>
+              Effect.fail(new HttpApiError.InternalServerError()),
+            NoSuchElementError: () => Effect.fail(new HttpApiError.NotFound()),
+          })
+        )
+      )
+    )
 )

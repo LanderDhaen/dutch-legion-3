@@ -7,22 +7,27 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "turbo format",
-    "typecheck": "turbo typecheck"
+    "typecheck": "turbo typecheck",
+    "prepare": "effect-tsgo patch --typescript --no-oxlint"
   },
   "devDependencies": {
+    "@effect/tsgo": "0.63.0",
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "eslint": "^9.39.5",
+    "oxlint": "^1.90.0",
+    "oxlint-tsgolint": "^7.0.2005",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "turbo": "^2.9.18",
-    "typescript": "^6"
+    "typescript": "7.0.2"
   },
   "packageManager": "pnpm@10.33.4",
   "engines": {
     "node": ">=20"
   },
   "dependencies": {
+    "effect": "^4.1.0",
     "zod": "^4.6.7"
   }
 }

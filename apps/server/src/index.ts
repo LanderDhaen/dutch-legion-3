@@ -1,30 +1,23 @@
-import { Elysia } from "elysia"
-import { seasonRouter } from "./routes/season"
-import { clanRouter } from "./routes/clan"
-import { logixlysia } from "logixlysia"
-import { playerRouter } from "./routes/player"
-import { memberRouter } from "./routes/member"
-import { linkRouter } from "./routes/link"
+import { HttpApiBuilder } from "effect/http-api"
+import { Layer } from "effect"
+import { HttpRouter } from "effect/http"
+import {
+  NodeHttpServer,
+  NodeRuntime,
+  NodeServices,
+} from "@effect/platform-node"
+import { createServer } from "node:http"
+import { DatabaseService } from "@server/database"
+import { MemberService } from "@server/services/member"
+import { memberApi, memberHandlers } from "@server/routes/member"
 
-const app = new Elysia()
-  .use(
-    logixlysia({
-      config: {
-        service: "server",
-        customLogFormat:
-          "{now} {service} {method} {pathname}{query} -> {status} ({duration})",
-      },
-    })
-  )
-  .use(clanRouter)
-  .use(linkRouter)
-  .use(memberRouter)
-  .use(playerRouter)
-  .use(seasonRouter)
-  .listen(8000)
+const api = HttpApiBuilder.layer(memberApi).pipe(Layer.provide(memberHandlers))
 
-console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
+const server = HttpRouter.serve(api).pipe(
+  Layer.provide(MemberService.layer),
+  Layer.provide(DatabaseService.Live),
+  Layer.provide(NodeHttpServer.layer(createServer, { port: 8000 })),
+  Layer.provide(NodeServices.layer)
 )
 
-export type App = typeof app
+NodeRuntime.runMain(Layer.launch(server))
