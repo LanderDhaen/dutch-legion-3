@@ -12,7 +12,6 @@
   },
   "devDependencies": {
     "@effect/tsgo": "0.63.0",
-    "@workspace/typescript-config": "workspace:*",
     "oxlint": "^1.90.0",
     "oxlint-tsgolint": "^7.0.2005",
     "prettier": "^3.8.3",

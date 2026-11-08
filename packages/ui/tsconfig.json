@@ -1,8 +1,9 @@
 {
-  "extends": "@workspace/typescript-config/react-library.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "jsx": "react-jsx",
     "paths": {
-      "@workspace/ui/*": ["./src/*"]
+      "@workspace/api/*": ["./src/*"]
     }
   },
   "include": ["."],
