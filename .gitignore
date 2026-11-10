@@ -13,9 +13,8 @@ node_modules
 # testing
 coverage
 
-# next.js
-.next/
-out/
+# tanstack
+.tanstack
 
 # production
 build
