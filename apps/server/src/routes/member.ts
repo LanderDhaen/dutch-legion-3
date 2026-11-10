@@ -1,5 +1,5 @@
 import { HttpApiBuilder } from "effect/http-api"
-import { MemberService } from "@server/services/member"
+import { MemberService } from "@/services/member"
 import { memberApi } from "@workspace/api/contracts"
 
 export const memberHandlers = HttpApiBuilder.group(

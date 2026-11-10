@@ -1,4 +1,4 @@
-import { Database } from "@server/types/database"
+import { Database } from "@/types/database"
 import { DatabaseError as PostgreSQLError, Pool, types } from "pg"
 import { CamelCasePlugin, Executable, Kysely, PostgresDialect } from "kysely"
 import { Array, Context, Effect, Layer, Match, Option, Schema } from "effect"

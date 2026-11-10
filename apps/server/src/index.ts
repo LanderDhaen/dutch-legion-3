@@ -7,9 +7,9 @@ import {
   NodeServices,
 } from "@effect/platform-node"
 import { createServer } from "node:http"
-import { DatabaseService } from "@server/database"
-import { MemberService } from "@server/services/member"
-import { memberHandlers } from "@server/routes/member"
+import { DatabaseService } from "@/database"
+import { MemberService } from "@/services/member"
+import { memberHandlers } from "@/routes/member"
 import { memberApi } from "@workspace/api/contracts"
 
 const api = HttpApiBuilder.layer(memberApi).pipe(Layer.provide(memberHandlers))

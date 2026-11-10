@@ -1,4 +1,6 @@
 {
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "dist"],
   "compilerOptions": {
     "target": "ES2022",
     "module": "ESNext",
@@ -13,9 +15,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    "paths": {
-      "@server/*": ["./apps/server/src/*"],
-      "@server": ["./apps/server/src"]
-    }
+    "noUncheckedIndexedAccess": true
   }
 }

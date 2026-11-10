@@ -1,8 +1,8 @@
 import { Context, Effect, Layer } from "effect"
-import { Database } from "@server/types/database"
+import { Database } from "@/types/database"
 import { expressionBuilder } from "kysely"
 import { jsonArrayFrom, jsonBuildObject } from "kysely/helpers/postgres"
-import { DatabaseService } from "@server/database"
+import { DatabaseService } from "@/database"
 import {
   MemberNotFoundError,
   MemberServiceError,
