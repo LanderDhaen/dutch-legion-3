@@ -38,7 +38,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="scrollbar-gutter-stable bg-background p-4">
         {children}
         <Scripts />
       </body>

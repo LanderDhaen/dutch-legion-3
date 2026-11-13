@@ -10,11 +10,11 @@ import { createServer } from "node:http"
 import { DatabaseService } from "@/database"
 import { MemberService } from "@/services/member"
 import { memberHandlers } from "@/routes/member"
-import { memberApi } from "@workspace/api/contracts"
+import { api } from "@workspace/api/contracts"
 
-const api = HttpApiBuilder.layer(memberApi).pipe(Layer.provide(memberHandlers))
-
-const server = HttpRouter.serve(api).pipe(
+const server = HttpRouter.serve(
+  HttpApiBuilder.layer(api).pipe(Layer.provide(memberHandlers))
+).pipe(
   Layer.provide(MemberService.layer),
   Layer.provide(DatabaseService.layer),
   Layer.provide(NodeHttpServer.layer(createServer, { port: 8000 })),
